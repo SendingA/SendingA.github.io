@@ -1,50 +1,49 @@
 ---
 # Display name
-title: 吳健雄
+title: 刘圣鼎
 
 # Name pronunciation (optional)
-name_pronunciation: Chien Shiung Wu
+name_pronunciation: SHENGDING LIU
 
 # Full name (for SEO)
-first_name: Shiung Wu
-last_name: Chien
+first_name: SHENGDING
+last_name: LIU
 
 # Status emoji
 status:
-  icon: ☕️
+  icon: 
 
 # Is this the primary user of the site?
 superuser: true
 
 # Role/position/tagline
-role: Professor of Artificial Intelligence
+role: Bachelor in Intelligent Science and Technology of Computer Science and Engineering Department 
 
 # Organizations/Affiliations to show in About widget
 organizations:
-  - name: Stanford University
-    url: https://www.stanford.edu/
+  - name: Southern University of Science and Technology
+    url: https://www.sustech.edu.cn/
 
 # Short bio (displayed in user profile at end of posts)
-bio: My research interests include distributed robotics, mobile computing and programmable matter.
+bio: My research interests include smart sensing, wireless network and mobile computing, especially the related research directions of mmwave radar and UWB.
 
 # Interests to show in About widget
 interests:
+  - Smart Sensing
+  - Wireless Network
+  - Mobile Computing
   - Artificial Intelligence
-  - Computational Linguistics
-  - Information Retrieval
 
 # Education to show in About widget
 education:
   courses:
-    - course: PhD in Artificial Intelligence
-      institution: Stanford University
-      year: 2012
-    - course: MEng in Artificial Intelligence
-      institution: Massachusetts Institute of Technology
-      year: 2009
-    - course: BSc in Artificial Intelligence
-      institution: Massachusetts Institute of Technology
-      year: 2008
+    - course: Visiting Scholor
+      institution: Johns Hopkins University
+      year: 2024
+
+    - course: BEng
+      institution: Southern University of Science and Technology
+      year: 2021
 
 # Skills
 # For available icons, see: https://docs.hugoblox.com/getting-started/page-builder/#icons
