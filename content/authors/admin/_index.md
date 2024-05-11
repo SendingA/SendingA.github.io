@@ -39,32 +39,76 @@ education:
   courses:
     - course: Visiting Scholor
       institution: Johns Hopkins University
-      year: 2024
+      year: 2024.2.20-2024.8.20
 
     - course: BEng
       institution: Southern University of Science and Technology
-      year: 2021
+      year: 2021.9-2025.6
 
 # Skills
 # For available icons, see: https://docs.hugoblox.com/getting-started/page-builder/#icons
 skills:
-  - name: Technical
+  - name: Programming Language
     items:
-      - name: Python
-        description: ''
-        percent: 80
-        icon: python
-        icon_pack: fab
-      - name: Data Science
+      - name: Java
         description: ''
         percent: 100
-        icon: chart-line
-        icon_pack: fas
+        icon: java
+        icon_pack: fab
+
+      - name: Python
+        description: ''
+        percent: 100
+        icon: python
+        icon_pack: fab
+
+        - name: Verilog
+        description: ''
+        percent: 80
+        icon: verilog
+        icon_pack: fab
+
+        - name: MATLAB
+        description: ''
+        percent: 80
+        icon: matlab
+        icon_pack: fab        
+
+        - name: Verilog
+        description: ''
+        percent: 80
+        icon: verilog
+        icon_pack: fab
+  
       - name: SQL
         description: ''
-        percent: 40
+        percent: 80
         icon: database
         icon_pack: fas
+
+        - name: C/C++
+        description: ''
+        percent: 60
+        icon: C/C++
+        icon_pack: fab
+
+- name: Software and Hardware
+    color: '#eeac02'
+    color_border: '#f0bf23'
+    items:
+      - name: mmwave_Studio
+        description: ''
+        icon: mmwave_Studio
+        icon_pack: fas
+      - name: mmwave_demo_Visualizer
+        description: ''
+        icon: cmmwave_demo_Visualizer
+        icon_pack: fas
+      - name: Uniflash
+        description: ''
+        icon: Uniflash
+        icon_pack: fas
+        
   - name: Hobbies
     color: '#eeac02'
     color_border: '#f0bf23'
@@ -119,5 +163,5 @@ social:
 highlight_name: true
 ---
 
-Chien Shiung Wu is a professor of artificial intelligence at the Stanford AI Lab. Her research interests include distributed robotics, mobile computing and programmable matter. She leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
+
 {style="text-align: justify;"}
