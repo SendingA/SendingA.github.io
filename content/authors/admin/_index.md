@@ -25,7 +25,7 @@ organizations:
     url: https://www.sustech.edu.cn/
 
 # Short bio (displayed in user profile at end of posts)
-bio: My research interests include smart sensing, wireless network and mobile computing, especially the related research directions of mmwave radar and UWB.
+bio: My research interests include smart sensing, wireless network and mobile computing, especially the related research directions of mmwave radar and Ultra-Wideband(UWB).
 
 # Interests to show in About widget
 interests:
@@ -62,52 +62,47 @@ skills:
         icon: python
         icon_pack: fab
 
-        - name: Verilog
-        description: ''
-        percent: 80
-        icon: verilog
-        icon_pack: fab
+        # - name: Verilog
+        # description: ''
+        # percent: 80
+        # icon: verilog
+        # icon_pack: fab
 
-        - name: MATLAB
-        description: ''
-        percent: 80
-        icon: matlab
-        icon_pack: fab        
+      #   - name: MATLAB
+      #   description: ''
+      #   percent: 80
+      #   icon: matlab
+      #   icon_pack: fab        
 
-        - name: Verilog
-        description: ''
-        percent: 80
-        icon: verilog
-        icon_pack: fab
-  
-      - name: SQL
-        description: ''
-        percent: 80
-        icon: database
-        icon_pack: fas
 
-        - name: C/C++
-        description: ''
-        percent: 60
-        icon: C/C++
-        icon_pack: fab
+      # - name: SQL
+      #   description: ''
+      #   percent: 80
+      #   icon: database
+      #   icon_pack: fas
 
-- name: Software and Hardware
-    color: '#eeac02'
-    color_border: '#f0bf23'
-    items:
-      - name: mmwave_Studio
-        description: ''
-        icon: mmwave_Studio
-        icon_pack: fas
-      - name: mmwave_demo_Visualizer
-        description: ''
-        icon: cmmwave_demo_Visualizer
-        icon_pack: fas
-      - name: Uniflash
-        description: ''
-        icon: Uniflash
-        icon_pack: fas
+      #   - name: C/C++
+      #   description: ''
+      #   percent: 60
+      #   icon: C/C++
+      #   icon_pack: fab
+
+# - name: Software and Hardware
+#     color: '#eeac02'
+#     color_border: '#f0bf23'
+#     items:
+#       - name: mmwave_Studio
+#         description: ''
+#         icon: mmwave_Studio
+#         icon_pack: fas
+#       - name: mmwave_demo_Visualizer
+#         description: ''
+#         icon: cmmwave_demo_Visualizer
+#         icon_pack: fas
+#       - name: Uniflash
+#         description: ''
+#         icon: Uniflash
+#         icon_pack: fas
         
   - name: Hobbies
     color: '#eeac02'
