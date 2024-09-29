@@ -1,6 +1,6 @@
 ---
 # Display name
-title: Shengding Liu
+title: 刘圣鼎
 
 # Name pronunciation (optional)
 name_pronunciation: SHENGDING LIU
@@ -59,27 +59,27 @@ skills:
         icon_pack: fab
 
       - name: Matlab
-        icon: matlab
-        icon_pack: fab
+        icon: custom/matlab
+        icon_pack: custom
 
       - name: PostgreSQL
-        icon: postgresql
+        icon: custom/postgresql
         icon_pack: custom
 
       - name: C
-        icon: c
+        icon: custom/c
         icon_pack: custom
 
       - name: C++
-        icon: cpp
+        icon: custom/cpp
         icon_pack: custom
 
       - name: Vue
-        icon: vue
+        icon: custom/vue
         icon_pack: custom
 
       - name: Spring Boot
-        icon: spring-boot
+        icon: custom/spring-boot
         icon_pack: custom
 
 
