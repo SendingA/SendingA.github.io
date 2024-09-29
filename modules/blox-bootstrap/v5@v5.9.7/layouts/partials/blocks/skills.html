@@ -17,50 +17,56 @@
 
 <div class="col-12 {{if eq $columns "2"}}col-lg-8{{end}}">
 
-<div class="row">
+  <div class="row">
 
-  {{ with $block.content.text }}
-  <div class="col-md-12 text-center mb-3">
-    {{ . | emojify | $page.RenderString }}
-  </div>
-  {{ end }}
+    {{ with $block.content.text }}
+    <div class="col-md-12 text-center mb-3">
+      {{ . | emojify | $page.RenderString }}
+    </div>
+    {{ end }}
 
-  {{ range $skills }}
-    {{ $color := .color | default "" }}
-    {{ $color_border := .color_border | default "" }}
-    <div class="col-12 col-md-6">
-      <div class="skill-group-title">
-        {{ .name | markdownify | emojify }}
-        {{ with .description }}<p>{{ . | markdownify | emojify }}</p>{{ end }}
-      </div>
+    {{ range $skills }}
+      {{ $color := .color | default "" }}
+      {{ $color_border := .color_border | default "" }}
+      <div class="col-12 col-md-6">
+        <div class="skill-group-title">
+          {{ .name | markdownify | emojify }}
+          {{ with .description }}<p>{{ . | markdownify | emojify }}</p>{{ end }}
+        </div>
 
-      <div class="row"> <!-- Add this div to wrap skills-content -->
-        {{ range .items }}
-          {{ $pack := or .icon_pack "fas" }}
-          {{ $pack_prefix := $pack }}
-          {{ if in (slice "fab" "fas" "far" "fal") $pack }}
-            {{ $pack_prefix = "fa" }}
+        <div class="row"> <!-- Add this div to wrap skills-content -->
+          {{ range .items }}
+            {{ $pack := or .icon_pack "fas" }}
+            {{ $pack_prefix := $pack }}
+            {{ if in (slice "fab" "fas" "far" "fal") $pack }}
+              {{ $pack_prefix = "fa" }}
+            {{ end }}
+
+            <div class="col-6 mb-3"> <!-- Add 'col-6' for two-column layout and some bottom margin for spacing -->
+              <div class="skills-content d-flex align-items-center"> <!-- Use 'd-flex' and 'align-items-center' to align icon and text -->
+                
+                {{ with .icon }}
+                  <span class="skills-icon">
+                    {{- if eq $pack "emoji" -}}
+                      {{- . | emojify -}}
+                    {{- else if eq $pack "custom" -}}
+                      {{- $svg_icon := resources.Get (printf "media/icons/skills/%s.svg" .) -}}
+                      {{- if $svg_icon -}}<img src="{{ $svg_icon.RelPermalink }}" alt="{{.}}" class="svg-icon svg-baseline" loading="lazy">{{- end -}}
+                    {{- else -}}
+                      <i class="{{ $pack }} {{ $pack_prefix }}-{{ . }}"></i>
+                    {{- end -}}
+                  </span>
+                {{ end }}
+
+                <span class="ml-2 skill-name"> <!-- Add some margin-left using 'ml-2' for spacing between icon and text -->
+                  {{ .name }} <!-- Display the name of the skill item -->
+                </span>
+
+              </div>
+            </div>
           {{ end }}
-
-      <div class="skills-content">
-
-        {{ with .icon }}
-          <span class="skills-icon">
-            {{- if eq $pack "emoji" -}}
-              {{- . | emojify -}}
-            {{- else if eq $pack "custom" -}}
-              {{- $svg_icon := resources.Get (printf "media/icons/skills/%s.svg" .) -}}
-              {{- if $svg_icon -}}<img src="{{ $svg_icon.RelPermalink }}" alt="{{.}}" class="svg-icon svg-baseline" loading="lazy">{{- end -}}
-            {{- else -}}
-              <i class="{{ $pack }} {{ $pack_prefix }}-{{ . }}"></i>
-            {{- end -}}
-          </span>
-        {{ end }}
-
+        </div> <!-- End of wrapper div -->
       </div>
     {{ end }}
-  </div> <!-- End of wrapper div -->
-</div>
-{{ end }}
-</div>
+  </div>
 </div>
