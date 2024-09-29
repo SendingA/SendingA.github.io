@@ -59,27 +59,27 @@ skills:
         icon_pack: fab
 
       - name: Matlab
-        icon: custom/matlab
+        icon: matlab
         icon_pack: custom
 
       - name: PostgreSQL
-        icon: custom/postgresql
+        icon: postgresql
         icon_pack: custom
 
       - name: C
-        icon: custom/c
+        icon: c
         icon_pack: custom
 
       - name: C++
-        icon: custom/cpp
+        icon: cpp
         icon_pack: custom
 
       - name: Vue
-        icon: custom/vue
+        icon: vue
         icon_pack: custom
 
       - name: Spring Boot
-        icon: custom/spring-boot
+        icon: spring-boot
         icon_pack: custom
 
 
