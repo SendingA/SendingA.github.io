@@ -34,7 +34,7 @@ sections:
     design:
       background:
         image:
-          filename: hero-academic.png # 你的背景图片
+          filename: hero-academic.png 
         gradient_end: '#1976d2'
         gradient_start: '#004ba0'
         text_color_light: true
@@ -67,27 +67,24 @@ sections:
       #   Leave `date_end` empty if it's your current employer.
       #   Begin multi-line descriptions with YAML's `|2-` multi-line prefix.
       items:
-        - title: CEO
-          company: GenCoin
-          company_url: ''
-          company_logo: org-gc
-          location: California
-          date_start: '2021-01-01'
+        - title: B.Eng. in Computer Science and Engineering
+          company: SUSTech
+          company_url: 'https://www.sustech.edu'
+          company_logo: sustech
+          location: Shenzhen, China
+          date_start: '2021-09-01'
           date_end: ''
           description: |2-
-              Responsibilities include:
-
-              * Analysing
-              * Modelling
-              * Deploying
-        - title: Professor of Semiconductor Physics
-          company: University X
-          company_url: ''
-          company_logo: org-x
-          location: California
-          date_start: '2016-01-01'
-          date_end: '2020-12-31'
-          description: Taught electronic engineering and researched semiconductor physics.
+             Major in Computer Science and Engineering at SUSTech, guided by 
+            <a href="https://jinzhang-sustech.github.io" target="_blank"><strong>Professor Jin Zhang</strong></a>.
+        - title: Visiting Researcher
+          company: Johns Hopkins University
+          company_url: 'https://www.jhu.edu'
+          company_logo: jhu
+          location: Baltimore, Maryland
+          date_start: '2024-03-23'
+          date_end: '2024-08-14'
+          description: Visiting Researcher under the guidance of <a href="https://renjiezhao.github.io" target="_blank"><strong>Professor Renjie Zhao</strong></a>. in Computer Science Department of the Whiting School of Engineering
     design:
       columns: '2'
   - block: accomplishments
