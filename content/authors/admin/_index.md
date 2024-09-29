@@ -52,11 +52,11 @@ skills:
     items:
       - name: Java
         icon: java
-        icon_pack: fab
+        icon_pack: custom
 
       - name: Python
         icon: python
-        icon_pack: fab
+        icon_pack: custom
 
       - name: Matlab
         icon: matlab
@@ -133,9 +133,14 @@ social:
     icon_pack: fas
     link: 'mailto:12110813@mail.sustech.edu.cn'
 
-  - icon: zhihu
+  - icon: blog
+    icon_pack: fas
+    link: https://sendinga.github.io/#posts
+
+  - icon: 
     icon_pack: fab
     link: https://www.zhihu.com/people/258012-58   
+
 
   - icon: linkedin
     icon_pack: fab
