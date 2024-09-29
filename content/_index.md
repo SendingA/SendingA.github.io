@@ -33,9 +33,14 @@ sections:
         <script async defer src="https://buttons.github.io/buttons.js"></script>
     design:
       background:
+        image:
+          filename: hero-academic.png # 你的背景图片
         gradient_end: '#1976d2'
         gradient_start: '#004ba0'
         text_color_light: true
+
+         
+
   - block: about.biography
     id: about
     content:
