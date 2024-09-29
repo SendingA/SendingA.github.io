@@ -1,6 +1,6 @@
 ---
 # Display name
-title: 刘圣鼎
+title: Shengding Liu
 
 # Name pronunciation (optional)
 name_pronunciation: SHENGDING LIU
@@ -48,44 +48,40 @@ education:
 # Skills
 # For available icons, see: https://docs.hugoblox.com/getting-started/page-builder/#icons
 skills:
-  - name: Programming Language
+  - name: Programming Languages & Frameworks
     items:
       - name: Java
-        description: ''
-        percent: 100
         icon: java
         icon_pack: fab
 
       - name: Python
-        description: ''
-        percent: 100
         icon: python
         icon_pack: fab
 
-        # - name: Verilog
-        # description: ''
-        # percent: 80
-        # icon: verilog
-        # icon_pack: fab
+      - name: Matlab
+        icon: matlab
+        icon_pack: fab
 
-      #   - name: MATLAB
-      #   description: ''
-      #   percent: 80
-      #   icon: matlab
-      #   icon_pack: fab        
+      - name: PostgreSQL
+        icon: postgresql
+        icon_pack: custom
 
+      - name: C
+        icon: c
+        icon_pack: custom
 
-      # - name: SQL
-      #   description: ''
-      #   percent: 80
-      #   icon: database
-      #   icon_pack: fas
+      - name: C++
+        icon: cpp
+        icon_pack: custom
 
-      #   - name: C/C++
-      #   description: ''
-      #   percent: 60
-      #   icon: C/C++
-      #   icon_pack: fab
+      - name: Vue
+        icon: vue
+        icon_pack: custom
+
+      - name: Spring Boot
+        icon: spring-boot
+        icon_pack: custom
+
 
 # - name: Software and Hardware
 #     color: '#eeac02'
@@ -129,24 +125,21 @@ skills:
 #   For an email link, use "fas" icon pack, "envelope" icon, and a link in the
 #   form "mailto:your-email@example.com" or "/#contact" for contact widget.
 social:
-  - icon: envelope
-    icon_pack: fas
-    link: '/#contact'
-  - icon: twitter
-    icon_pack: fab
-    link: https://twitter.com/GeorgeCushen
-    label: Follow me on Twitter
-    display:
-      header: true
-  - icon: graduation-cap # Alternatively, use `google-scholar` icon from `ai` icon pack
-    icon_pack: fas
-    link: https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ
   - icon: github
     icon_pack: fab
-    link: https://github.com/gcushen
+    link: https://github.com/SendingA
+
+  - icon: envelope
+    icon_pack: fas
+    link: 'mailto:12110813@mail.sustech.edu.cn'
+
+  - icon: zhihu
+    icon_pack: fab
+    link: https://www.zhihu.com/people/258012-58   
+
   - icon: linkedin
     icon_pack: fab
-    link: https://www.linkedin.com/
+    link: https://www.linkedin.com/in/shengding-liu-a9764a316/
   # Link to a PDF of your resume/CV.
   # To use: copy your resume to `static/uploads/resume.pdf`, enable `ai` icons in `params.yaml`,
   # and uncomment the lines below.
@@ -157,6 +150,6 @@ social:
 # Highlight the author in author lists? (true/false)
 highlight_name: true
 ---
-
+I will receive my B.E. degree in the Department of Computer Science and Engineering from Southern University of Science and Technology (<a href="https://sustech.edu.cn"><strong>SUSTech</strong></a>) in 2025. My research interests include <strong> smart sensing, wireless network and mobile computing </strong>, especially the related research directions of mmwave radar and Ultra-Wideband(UWB).
 
 {style="text-align: justify;"}
