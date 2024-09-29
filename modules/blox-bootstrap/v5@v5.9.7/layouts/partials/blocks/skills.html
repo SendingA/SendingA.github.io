@@ -1,0 +1,66 @@
+{{/* Hugo Blox: Skills */}}
+{{/* Documentation: https://hugoblox.com/blocks/ */}}
+{{/* License: https://github.com/HugoBlox/hugo-blox-builder/blob/main/LICENSE.md */}}
+
+{{/* Initialise */}}
+{{ $page := .wcPage }}
+{{ $block := .wcBlock }}
+{{ $columns := $block.design.columns | default "1" }}
+{{ $author := $block.content.username | default "admin" }}
+
+{{ $person_page_path := (printf "/authors/%s" $author) }}
+{{ $person_page := site.GetPage $person_page_path }}
+{{ if not $person_page }}
+  {{ errorf "Could not find an author page at `%s`. Please check the value of `author` in your Skill block and create an associated author page if one does not already exist. See https://docs.hugoblox.com/page-builder/#about " $person_page_path }}
+{{end}}
+{{ $skills := $person_page.Params.skills }}
+
+<div class="col-12 {{if eq $columns "2"}}col-lg-8{{end}}">
+
+<div class="row">
+
+  {{ with $block.content.text }}
+  <div class="col-md-12 text-center mb-3">
+    {{ . | emojify | $page.RenderString }}
+  </div>
+  {{ end }}
+
+  {{ range $skills }}
+    {{ $color := .color | default "" }}
+    {{ $color_border := .color_border | default "" }}
+    <div class="col-12 col-md-6">
+      <div class="skill-group-title">
+        {{ .name | markdownify | emojify }}
+        {{ with .description }}<p>{{ . | markdownify | emojify }}</p>{{ end }}
+      </div>
+
+      <div class="row"> <!-- Add this div to wrap skills-content -->
+        {{ range .items }}
+          {{ $pack := or .icon_pack "fas" }}
+          {{ $pack_prefix := $pack }}
+          {{ if in (slice "fab" "fas" "far" "fal") $pack }}
+            {{ $pack_prefix = "fa" }}
+          {{ end }}
+
+      <div class="skills-content">
+
+        {{ with .icon }}
+          <span class="skills-icon">
+            {{- if eq $pack "emoji" -}}
+              {{- . | emojify -}}
+            {{- else if eq $pack "custom" -}}
+              {{- $svg_icon := resources.Get (printf "media/icons/skills/%s.svg" .) -}}
+              {{- if $svg_icon -}}<img src="{{ $svg_icon.RelPermalink }}" alt="{{.}}" class="svg-icon svg-baseline" loading="lazy">{{- end -}}
+            {{- else -}}
+              <i class="{{ $pack }} {{ $pack_prefix }}-{{ . }}"></i>
+            {{- end -}}
+          </span>
+        {{ end }}
+
+      </div>
+    {{ end }}
+  </div> <!-- End of wrapper div -->
+</div>
+{{ end }}
+</div>
+</div>
