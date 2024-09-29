@@ -55,12 +55,13 @@ sections:
       username: admin
     design:
       columns: '1'
+      
   - block: experience
     content:
       title: Experience
       # Date format for experience
       #   Refer to https://docs.hugoblox.com/customization/#date-format
-      date_format: Jan 2006
+      date_format: September 2024
       # Experiences.
       #   Add/remove as many `experience` items below as you like.
       #   Required fields are `title`, `company`, and `date_start`.
@@ -86,7 +87,9 @@ sections:
           date_end: '2024-08-14'
           description: Visiting Researcher under the guidance of <a href="https://renjiezhao.github.io" target="_blank"><strong>Professor Renjie Zhao</strong></a>. in Computer Science Department of the Whiting School of Engineering
     design:
-      columns: '2'
+      columns: '1'
+
+
   - block: accomplishments
     content:
       # Note: `&shy;` is used to add a 'soft' hyphen in a long heading.
