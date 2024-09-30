@@ -1,7 +1,7 @@
 ---
 title: Reversed Reversi through Python with Strong AI
 summary: 
-  Implemented Monte Carlo & <b>FAST</b> Alpha Beta Pruning algorithm by leveraging <b>bitwise operations</b>.
+  Design and achieve the functionality and the inner logic of the Weakest Reversi through real-time evaluation of the chess board and Alpha-Beta Pruning and compete with others in AI(H) course.
 tags:
   - Course
 date: '2022-10-01'
@@ -12,7 +12,7 @@ external_link: ''
 image:
   caption: Othello
 
-url_code: 'https://github.com/IT-Bill/CS311-AI/tree/main/Proj-Reversed-Reversi'
+url_code: 'https://github.com/SendingA/CS311_AI_Project/tree/master/Weakest_Reversi'
 url_pdf: ''
 
 ---
