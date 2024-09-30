@@ -1,7 +1,7 @@
 ---
 title: Single Anchor Ultra-Wideband Multipath Triangulate Localization
 summary: 
-A UWB multipath triangulate localization algorithm is proposed and achieved , including the generation of UWB signal and the channel model, the extract of CIR, the obtainment of AOA, AOD, rTOF and the localization algorithm. The simulation is initially verified successfully.
+  A UWB multipath triangulate localization algorithm is proposed and achieved , including the generation of UWB signal and the channel model, the extract of CIR, the obtainment of AOA, AOD, rTOF and the localization algorithm. The simulation is initially verified successfully.
 tags:
   - Reserch
 date: '2024-06-15'
