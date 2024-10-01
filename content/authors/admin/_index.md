@@ -155,6 +155,6 @@ social:
 # Highlight the author in author lists? (true/false)
 highlight_name: true
 ---
-I will receive my B.E. degree in the Department of Computer Science and Engineering from Southern University of Science and Technology (<a href="https://sustech.edu.cn"><strong>SUSTech</strong></a>) in 2025. My research interests include <strong> smart sensing, wireless network and mobile computing </strong>, especially the related research directions of mmwave radar and Ultra-Wideband(UWB).
+I will receive my B.E. degree in the Department of Computer Science and Engineering from Southern University of Science and Technology (<a href="https://sustech.edu.cn"><strong>SUSTech</strong></a>) in 2025. My research interests include <strong> smart sensing, wireless network and mobile computing </strong>, especially the related research directions of mmwave radar and Ultra-Wideband(UWB).I will receive my B.E. degree in the Department of Computer Science and Engineering from Southern University of Science and Technology (<a href="https://sustech.edu.cn"><strong>SUSTech</strong></a>) in 2025. My research interests include <strong> smart sensing, wireless network and mobile computing </strong>, especially the related research directions of mmwave radar and Ultra-Wideband(UWB).
 
 {style="text-align: justify;"}
