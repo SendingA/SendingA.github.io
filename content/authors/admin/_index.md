@@ -29,9 +29,9 @@ bio: My research interests include smart sensing, wireless network and mobile co
 
 # Interests to show in About widget
 interests:
-  - Smart Sensing
-  - Wireless Network
-  - Mobile Computing
+  - mmwave Sensing
+  - mmwave Security
+  - UWB Localization
   - Artificial Intelligence
 
 # Education to show in About widget
