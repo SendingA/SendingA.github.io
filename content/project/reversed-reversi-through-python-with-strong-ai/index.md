@@ -10,7 +10,7 @@ date: '2022-10-01'
 external_link: ''
 
 image:
-  caption: Othello
+  caption: Reversed Reversi
 
 url_code: 'https://github.com/SendingA/CS311_AI_Project/tree/master/Weakest_Reversi'
 url_pdf: ''

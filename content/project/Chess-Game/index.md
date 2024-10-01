@@ -1,7 +1,7 @@
 ---
 title: Chess Game
 summary: 
-Implemented a visually appealing chess game with complete functionality and multiple modes, supporting undo and time tracking components, as well as loading and saving games.
+  Implemented a visually appealing chess game with complete functionality and multiple modes, supporting undo and time tracking components, as well as loading and saving games.
 tags:
   - Course
 date: '2022-06-15'

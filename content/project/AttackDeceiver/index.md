@@ -1,7 +1,7 @@
 ---
 title: AttackDeceiver Anti-spoofing Automotive Radar System using an Interleaving Chirp Waveform
 summary: 
- Present a novel anti-spoofing system called AttackDeceiver that enables resilient surrounding environment sensing under various spoofing attacks via an interleaving chirp waveform.
+  Present a novel anti-spoofing system called AttackDeceiver that enables resilient surrounding environment sensing under various spoofing attacks via an interleaving chirp waveform.
 tags:
   - Research
 date: '2024-09-30'
