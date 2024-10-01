@@ -10,11 +10,10 @@ date: '2022-06-15'
 external_link: ''
 
 image:
-  caption: Chess Game
+  caption: ChessGame
   focal_point: Smart
 
 
 url_code: 'https://github.com/SendingA/Chess_Game_Project'
-url_pdf: ''
 
 ---
