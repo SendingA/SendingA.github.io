@@ -31,6 +31,7 @@ bio: My research interests include smart sensing, wireless network and mobile co
 interests:
   - mmwave Sensing
   - mmwave Security
+  - Signal Processing
   - UWB Localization
   - Artificial Intelligence
 
@@ -137,7 +138,7 @@ social:
     icon_pack: fas
     link: https://sendinga.github.io/#posts
 
-  - icon: 
+  - icon: zhihu
     icon_pack: fab
     link: https://www.zhihu.com/people/258012-58   
 
