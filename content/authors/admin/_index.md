@@ -85,21 +85,23 @@ skills:
 
 
 # - name: Software and Hardware
-#     color: '#eeac02'
-#     color_border: '#f0bf23'
 #     items:
 #       - name: mmwave_Studio
-#         description: ''
 #         icon: mmwave_Studio
 #         icon_pack: fas
 #       - name: mmwave_demo_Visualizer
-#         description: ''
 #         icon: cmmwave_demo_Visualizer
 #         icon_pack: fas
 #       - name: Uniflash
-#         description: ''
 #         icon: Uniflash
 #         icon_pack: fas
+#       - name: Segger Embeded Studio
+#         icon: Segger Embeded Studio
+#         icon_pack: fas
+#       - name: Uniflash
+#         icon: Uniflash
+#         icon_pack: fas
+      
         
   - name: Hobbies
     color: '#eeac02'
