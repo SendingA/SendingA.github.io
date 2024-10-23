@@ -83,7 +83,7 @@ skills:
         icon: spring-boot
         icon_pack: custom
 
-- name: Technologies
+  - name: Technologies
     items:
       - name: Sensing and Signal Prosessing
         icon: Sensing
