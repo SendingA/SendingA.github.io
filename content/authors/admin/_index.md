@@ -83,6 +83,20 @@ skills:
         icon: spring-boot
         icon_pack: custom
 
+- name: Technologies
+    items:
+      - name: Sensing and Signal Prosessing
+        icon: Sensing
+        icon_pack: custom
+      - name: AI & ML
+        icon: AI-and-ML
+        icon_pack: custom
+      - name: Embedded Development
+        icon: Embedded-Development
+        icon_pack: custom
+      - name: Self Motivation and Enthusiasm
+        icon: Self-Motivation
+        icon_pack: custom
 
 # - name: Software and Hardware
 #     items:
@@ -103,20 +117,7 @@ skills:
 #         icon_pack: fas
 
 
-  - name: Technologies
-      items:
-        - name: Sensing and Signal Prosessing
-          icon: Sensing
-          icon_pack: custom
-        - name: AI & ML
-          icon: AI-and-ML
-          icon_pack: custom
-        - name: Embedded Development
-          icon: Embedded-Development
-          icon_pack: custom
-        - name: Self Motivation and Enthusiasm
-          icon: Self-Motivation
-          icon_pack: custom
+
       
         
   - name: Hobbies
