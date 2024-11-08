@@ -14,5 +14,5 @@ image:
   caption: Poster Analysis
 
 url_code: 'https://github.com/SendingA/2023-CS103/tree/master/AI%20Intro'
-url_video: 'https://github.com/SendingA/CS214-CPU/blob/main/image/video.mp4'
+url_video: 'https://github.com/SendingA/2023-CS103/blob/master/AI%20Intro/Demo_Video.mp4'
 ---
