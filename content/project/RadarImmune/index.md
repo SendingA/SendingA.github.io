@@ -19,6 +19,6 @@ image:
 
 
 url_code: ''
-url_pdf: 'uploads/Radar_Immune_Infocom_2024.pdf'
+# url_pdf: 'uploads/Radar_Immune_Infocom_2024.pdf'
 
 ---
