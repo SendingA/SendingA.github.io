@@ -15,6 +15,6 @@ image:
 
 
 url_code: ''
-url_pdf: 'uploads/AttackDeceiver_TDSC.pdf'
+# url_pdf: 'uploads/AttackDeceiver_TDSC.pdf'
 
 ---
