@@ -1,5 +1,5 @@
 ---
-title: MIMO_SAR_Based_Soil_Wetness_Detection
+title: MIMO SAR Based Soil Wetness Detection
 summary: 
    We have reproduced MIMO-SAR using COTS single-chip mmWave radar and achieved a quite good imaging effect. We apply it to soil wetness detection and achieve a 100% binary classification.
 tags:
