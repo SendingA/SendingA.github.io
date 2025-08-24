@@ -187,7 +187,7 @@ highlight_name: true
 My fascination with IOT technology and its transformative potential began in my childhood. When I was a child, I often lost things and thought, "Why can’t we just call them and have them tell us where they are?" That simple idea sparked my imagination: What if everything could be connected? From that moment, the dream of creating an interconnected world took root in my mind. Shortly after enrolling at SUSTech, I joined the AIMS lab and delved into this field, embarking on this magical and interesting academic journey! 
 
 The journey has only just begun, and there is still a long way to go... -->
-I am a first-year Ph.D. student at Michigan State University (<a href="https://msu.edu/"><strong>MSU</strong></a>) under the supervision of (<a href="https://cse.msu.edu/~qyan/"><strong>Prof. Qiben Yan</strong></a>).
+I am a first-year Ph.D. student at <a href="https://msu.edu/"><strong>Michigan State University</strong></a> under the supervision of <a href="https://cse.msu.edu/~qyan/"><strong>Prof. Qiben Yan</strong></a>.
 
 I received my B.Eng. degree in Computer Science and Engineering from the Southern University of Science and Technology  (<a href="https://sustech.edu.cn"><strong>SUSTech</strong></a>) in 2025.
 
