@@ -17,12 +17,12 @@ status:
 superuser: true
 
 # Role/position/tagline
-role: Bachelor in Intelligent Science and Technology of Computer Science and Engineering Department 
+role: Ph.D. in the Department of Computer Science and Engineering, College of Engineering
 
 # Organizations/Affiliations to show in About widget
 organizations:
-  - name: Southern University of Science and Technology
-    url: https://www.sustech.edu.cn/
+  - name: Michigan State University
+    url: https://www.msu.edu/
 
 # Short bio (displayed in user profile at end of posts)
 bio: My research interests include smart sensing, wireless network and mobile computing, especially the related research directions of mmwave radar and Ultra-Wideband(UWB).
