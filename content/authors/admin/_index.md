@@ -40,11 +40,11 @@ education:
   courses:
     - course: Ph.D. Student
       institution: Michigan State University
-      year: 2025.8.25 - Present
+      year: 2025.8-Present
 
     - course: Visiting Researcher
       institution: Johns Hopkins University
-      year: 2024.2.20-2024.8.20
+      year: 2024.2-2024.8
 
     - course: BEng
       institution: Southern University of Science and Technology
