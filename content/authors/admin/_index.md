@@ -39,8 +39,8 @@ interests:
 education:
   courses:
     - course: PHD
-    institution: Michigan State University
-    year: 2025.8.25- Expected 2030
+      institution: Michigan State University
+      year: 2025.8.25- Expected 2030
 
     - course: Visiting Researcher
       institution: Johns Hopkins University
