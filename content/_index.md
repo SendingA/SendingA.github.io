@@ -249,17 +249,17 @@ sections:
       subtitle:
       text: 
       # Contact (add or remove contact options as necessary)
-      email: 12110813@mail.sustech.edu.cn
+      email: liushe10@msu.edu
       phone: +86 15936165501
       address:
-        street: No. 1088 Xueyuan Avenue
-        region: Shenzhen
-        postcode: '518055'
-        country: P.R. China
-        country_code: CN
+        street: 426 Auditorium Road
+        region: East Lansing
+        postcode: '48824'
+        country: the United States
+        country_code: US
       coordinates:
-        latitude: '22.6005'
-        longitude: '113.9947'
+        latitude: '42.7261'
+        longitude: '-84.4822'
       contact_links:
         - icon: video
           icon_pack: fas
