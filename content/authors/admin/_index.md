@@ -38,9 +38,9 @@ interests:
 # Education to show in About widget
 education:
   courses:
-    - course: PHD
+    - course: Ph.D. Student
       institution: Michigan State University
-      year: 2025.8.25- Expected 2030
+      year: 2025.8.25 - Present
 
     - course: Visiting Researcher
       institution: Johns Hopkins University

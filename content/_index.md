@@ -86,7 +86,7 @@ sections:
           date_start: '2024-03-23'
           date_end: '2024-08-14'
           description: Visiting Researcher under the guidance of <a href="https://renjiezhao.github.io" target="_blank"><strong>Professor Renjie Zhao</strong></a>. in Computer Science Department of the Whiting School of Engineering
-        - title: Ph.D.
+        - title: Ph.D. Student
           company: Michigan State University
           company_url: 'https://www.msu.edu'
           company_logo: msu
