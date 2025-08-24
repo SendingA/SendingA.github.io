@@ -74,7 +74,7 @@ sections:
           company_logo: sustech
           location: Shenzhen, China
           date_start: '2021-09-01'
-          date_end: ''
+          date_end: '2025-07-05'
           description: |2-
              Major in Computer Science and Engineering at SUSTech, guided by 
             <a href="https://jinzhang-sustech.github.io" target="_blank"><strong>Professor Jin Zhang</strong></a>.
@@ -86,6 +86,14 @@ sections:
           date_start: '2024-03-23'
           date_end: '2024-08-14'
           description: Visiting Researcher under the guidance of <a href="https://renjiezhao.github.io" target="_blank"><strong>Professor Renjie Zhao</strong></a>. in Computer Science Department of the Whiting School of Engineering
+        - title: Ph.D.
+          company: Michigan State University
+          company_url: 'https://www.msu.edu'
+          company_logo: msu
+          location: East Lansing, Michigan
+          date_start: '2025-08-16'
+          date_end: ''
+          description: Ph.D. student under the guidance of <a href="https://cse.msu.edu/~qyan/" target="_blank"><strong>Professor Qiben Yan</strong></a>. in Computer Science Department of College of Engineering          
     design:
       columns: '1'
 
