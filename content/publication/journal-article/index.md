@@ -1,8 +1,11 @@
 ---
-title: "An example journal article"
+title: "AttackDeceiver: Anti-Spoofing Automotive Radar System using a Phase-Shifted Interleaving Waveform"
 authors:
+- Kaiyi Huang
 - admin
-- Robert Ford
+- Yanlong Qiu
+- Yanjiao Chen
+- Jin Zhang
 author_notes:
 - "Equal contribution"
 - "Equal contribution"
@@ -18,13 +21,34 @@ publishDate: "2017-01-01T00:00:00Z"
 publication_types: ["article-journal"]
 
 # Publication name and optional abbreviated publication name.
-publication: "*Journal of Source Themes, 1*(1)"
-publication_short: ""
+publication: "*IEEE TRANSACTIONS ON DEPENDABLE AND SECURE COMPUTING"
+publication_short: "IEEE TDSC"
 
-abstract: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.
+abstract: —Millimeter-wave (mmWave) radars are indispens
+ able components of safety-critical advanced driver assistance
+ systems, enabling accurate and weather-resilient environmental
+ sensing for autonomous vehicles. Despite the advanced sensing
+ capabilities, mmWave radars remain susceptible to adversarial
+ attacks, where malicious users attempt to distort the sensing
+ results of victim radars, leading to hazardous driving behaviors.
+ While existing anti-spoofing techniques have been proposed to
+ mitigate specific attacks, they may be ineffective against adaptive
+ adversaries. To address this critical vulnerability, we introduce
+ AttackDeceiver, a novel anti-spoofing system using a phase
+ shifted interleaving waveform. By comparing range and velocity
+ estimates from two independent virtual channels, our system
+ effectively detects and mitigates the effects of spoofing attacks.
+ In addition, we proactively counter adaptive spoofing attacks
+ by inducing attackers to generate false targets with unrealistic
+ velocity fluctuations. A compact prototype of AttackDeceiver is
+ realized using commercial-off-the-shelf radar kits. Experimental
+ results demonstrate the effectiveness of our system, achieving a
+ remarkable false target recall exceeding 97.9% and a significant
+ enhancement in signal-to-interference-plus-noise ratio exceeding
+ 13.46dB.
 
 # Summary. An optional shortened abstract.
-summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum.
+summary: 
 
 tags:
 - Source Themes
@@ -33,8 +57,8 @@ featured: false
 # links:
 # - name: ""
 #   url: ""
-url_pdf: http://arxiv.org/pdf/1512.04133v1
-url_code: 'https://github.com/HugoBlox/hugo-blox-builder'
+url_pdf: https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=11193651&tag=1
+url_code: ''
 url_dataset: ''
 url_poster: ''
 url_project: ''

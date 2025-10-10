@@ -182,15 +182,10 @@ social:
 # Highlight the author in author lists? (true/false)
 highlight_name: true
 ---
-<!-- I will receive my B.E. degree in the Department of Computer Science and Engineering from Southern University of Science and Technology (<a href="https://sustech.edu.cn"><strong>SUSTech</strong></a>) in 2025. My research interests include <strong> smart sensing, wireless network and mobile computing </strong>, especially the related research directions of mmwave radar and Ultra-Wideband(UWB).
 
-My fascination with IOT technology and its transformative potential began in my childhood. When I was a child, I often lost things and thought, "Why can’t we just call them and have them tell us where they are?" That simple idea sparked my imagination: What if everything could be connected? From that moment, the dream of creating an interconnected world took root in my mind. Shortly after enrolling at SUSTech, I joined the AIMS lab and delved into this field, embarking on this magical and interesting academic journey! 
-
-The journey has only just begun, and there is still a long way to go... -->
 I am a first-year Ph.D student at <a href="https://msu.edu/"><strong>Michigan State University</strong></a> under the supervision of <a href="https://cse.msu.edu/~qyan/"><strong>Prof. Qiben Yan</strong></a>. I received my B.Eng. degree with honors in Computer Science and Engineering from the prestigious Turing Class from the Southern University of Science and Technology  (<a href="https://sustech.edu.cn"><strong>SUSTech</strong></a>) in 2025, where I joined AIMs Lab and conducted research under the guidance of <a href="https://jinzhang-sustech.github.io"><strong>Prof. Jin Zhang</strong></a> and <a href="https://renjiezhao.github.io"><strong>Prof. Renjie Zhao</strong></a>.
 
 My research interests lie in smart sensing, mobile computing and IOT security with a focus on mmWave radar and Ultra-Wideband (UWB), and with prospective directions extending toward Physical AI.
-<!-- My fascination with IoT technology and its transformative potential began in my childhood. I often misplaced my belongings and wondered, “Why can’t we just call them and have them tell us where they are?” That simple question sparked my imagination: What if everything could be connected? From that moment, the dream of creating an interconnected world took root in my mind. At SUSTech, I joined the AIMS Lab and began exploring this field, which opened the door to a magical and rewarding academic journey.   -->
 
 The journey has only just begun, and I look forward to an interesting and fulfilling Ph.D. career ahead.
 
