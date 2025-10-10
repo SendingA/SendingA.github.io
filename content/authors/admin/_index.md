@@ -1,6 +1,6 @@
 ---
-# Display name
 title: 刘圣鼎
+# Display name
 
 # Name pronunciation (optional)
 name_pronunciation: SHENGDING LIU

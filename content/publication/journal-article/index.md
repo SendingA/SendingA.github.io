@@ -2,7 +2,7 @@
 title: "AttackDeceiver: Anti-Spoofing Automotive Radar System using a Phase-Shifted Interleaving Waveform"
 authors:
 - Kaiyi Huang
-- admin
+- Shengding Liu
 - Yanlong Qiu
 - Yanjiao Chen
 - Jin Zhang
