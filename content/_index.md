@@ -210,6 +210,8 @@ sections:
         folders:
           - publication
         featured_only: true
+        # Only show journal articles (CSL type: article-journal)
+        publication_type: "article-journal"
     design:
       columns: '2'
       view: card
@@ -224,6 +226,8 @@ sections:
         folders:
           - publication
         exclude_featured: true
+        # Only show journal articles (CSL type: article-journal)
+        publication_type: "article-journal"
     design:
       columns: '2'
       view: citation
