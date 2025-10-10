@@ -7,10 +7,10 @@ authors:
 - Yanjiao Chen
 - Jin Zhang
 author_notes:
-- "Equal contribution"
-- "Equal contribution"
-date: "2015-09-01T00:00:00Z"
-doi: ""
+# - "Equal contribution"
+# - "Equal contribution"
+date: "2025-10-06T00:00:00Z"
+doi: "10.1109/TDSC.2025.3616165"
 
 # Schedule page publish date (NOT publication's date).
 publishDate: "2017-01-01T00:00:00Z"
@@ -21,10 +21,10 @@ publishDate: "2017-01-01T00:00:00Z"
 publication_types: ["article-journal"]
 
 # Publication name and optional abbreviated publication name.
-publication: "*IEEE TRANSACTIONS ON DEPENDABLE AND SECURE COMPUTING"
+publication: "IEEE TRANSACTIONS ON DEPENDABLE AND SECURE COMPUTING"
 publication_short: "IEEE TDSC"
 
-abstract: —Millimeter-wave (mmWave) radars are indispens
+abstract: Millimeter-wave (mmWave) radars are indispens
  able components of safety-critical advanced driver assistance
  systems, enabling accurate and weather-resilient environmental
  sensing for autonomous vehicles. Despite the advanced sensing
