@@ -28,7 +28,7 @@ organizations:
 bio: My research interests include smart sensing, wireless network and mobile computing, especially the related research directions of mmwave radar and Ultra-Wideband(UWB).
 
 # Interests to show in About widget
-Research Directions:
+Interests:
   - Smart Sensing and Mobile Computing
   - Wireless Network
   - IoT Security
