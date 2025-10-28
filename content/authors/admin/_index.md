@@ -29,9 +29,9 @@ bio: My research interests include smart sensing, wireless network and mobile co
 
 # Interests to show in About widget
 interests:
-  - mmWave Sensing and Security
-  - UWB-based Localization
-  - Security in Autonoumous Driving
+  - Smart Sensing and Mobile Computing
+  - Wireless Network
+  - IoT Security
   - Physical AI
 
 # Education to show in About widget
@@ -184,7 +184,7 @@ highlight_name: true
 
 I am a first-year Ph.D student at <a href="https://msu.edu/"><strong>Michigan State University</strong></a> under the supervision of <a href="https://cse.msu.edu/~qyan/"><strong>Prof. Qiben Yan</strong></a>. I received my B.Eng. degree with honors in Computer Science and Engineering from the prestigious Turing Class from the Southern University of Science and Technology  (<a href="https://sustech.edu.cn"><strong>SUSTech</strong></a>) in 2025, where I joined AIMs Lab and conducted research under the guidance of <a href="https://jinzhang-sustech.github.io"><strong>Prof. Jin Zhang</strong></a> and <a href="https://renjiezhao.github.io"><strong>Prof. Renjie Zhao</strong></a>.
 
-My research interests lie in **smart sensing**, **mobile computing** and **IOT security** with a focus on mmWave radar and Ultra-Wideband (UWB), and with prospective directions extending toward **Physical AI**.
+MMy overarching research interests lie in smart sensing, mobile computing, and IoT security, with a strong focus on enabling intelligent perception and secure interaction between the physical and digital worlds. My previous research has encompassed **mmWave sensing and security**, **UWB-based localization**, and **security in autonomous driving**. I am particularly interested in exploring how **Physical AI** can bridge perception, reasoning, and action to create autonomous, trustworthy, and context-aware intelligent systems.
 
 The journey has only just begun, and I look forward to an interesting and fulfilling Ph.D. career ahead.
 
