@@ -255,7 +255,7 @@ sections:
       text: 
       # Contact (add or remove contact options as necessary)
       email: liushe10@msu.edu
-      phone: +86 15936165501
+      phone: +1 5173155460
       address:
         street: 426 Auditorium Road
         region: East Lansing

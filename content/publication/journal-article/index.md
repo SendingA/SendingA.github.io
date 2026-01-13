@@ -8,7 +8,7 @@ authors:
 - Jin Zhang
 author_notes:
 - ""
-- "**Corresponding Author**"
+- "**the Second Author**"
 - ""
 - ""
 - ""
@@ -28,7 +28,7 @@ publication_types: ["article-journal"]
 
 # Publication name and optional abbreviated publication name.
 publication: "IEEE TRANSACTIONS ON DEPENDABLE AND SECURE COMPUTING"
-publication_short: "IEEE TDSC"
+publication_short: "IEEE TDSC(CCF-A)"
 
 abstract: Millimeter-wave (mmWave) radars are indispens
  able components of safety-critical advanced driver assistance
