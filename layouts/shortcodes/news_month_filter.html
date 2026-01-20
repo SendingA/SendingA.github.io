@@ -1,0 +1,6 @@
+{{- $months := sort (keys site.Taxonomies.month) -}}
+<div class="d-flex flex-wrap gap-2">
+  {{- range $m := (reverse $months) -}}
+    <a class="btn btn-sm btn-outline-primary" href="{{ (printf "/month/%s/" $m) | relURL }}">{{ $m }}</a>
+  {{- end -}}
+</div>
