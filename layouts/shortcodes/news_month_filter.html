@@ -3,7 +3,7 @@
   {{- $months = $months | append $month }}
 {{- end }}
 <div class="d-flex flex-wrap gap-2">
-  {{- range $month := $months | sort | reverse }}
+  {{- range $month := sort $months }}
     <a class="btn btn-sm btn-outline-primary" href="{{ printf "/month/%s/" $month | relURL }}">{{ $month }}</a>
   {{- end }}
 </div>
