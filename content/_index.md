@@ -97,25 +97,25 @@ sections:
     design:
       columns: '1'
 
-  - block: collection
-    id: news
-    content:
-      title: News
-      subtitle: ''
-      text: |-
-        {{< news_month_filter >}}
-      count: 6
-      filters:
-        folders:
-          - news
-        exclude_featured: true
-        exclude_future: false
-        exclude_past: false
-      offset: 0
-      order: desc
-    design:
-      view: compact
-      columns: '1'
+  # - block: collection
+  #   id: news
+  #   content:
+  #     title: News
+  #     subtitle: ''
+  #     text: |-
+  #       {{< news_month_filter >}}
+  #     count: 6
+  #     filters:
+  #       folders:
+  #         - news
+  #       exclude_featured: true
+  #       exclude_future: false
+  #       exclude_past: false
+  #     offset: 0
+  #     order: desc
+  #   design:
+  #     view: compact
+  #     columns: '1'
 
 
   # - block: accomplishments
