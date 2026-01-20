@@ -1,6 +1,9 @@
-{{- $months := sort (keys site.Taxonomies.month) -}}
+{{- $months := slice -}}
+{{- range $month, $pages := .Site.Taxonomies.month }}
+  {{- $months = $months | append $month }}
+{{- end }}
 <div class="d-flex flex-wrap gap-2">
-  {{- range $m := (reverse $months) -}}
-    <a class="btn btn-sm btn-outline-primary" href="{{ (printf "/month/%s/" $m) | relURL }}">{{ $m }}</a>
-  {{- end -}}
+  {{- range $month := $months | sort | reverse }}
+    <a class="btn btn-sm btn-outline-primary" href="{{ printf "/month/%s/" $month | relURL }}">{{ $month }}</a>
+  {{- end }}
 </div>
