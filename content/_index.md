@@ -102,7 +102,8 @@ sections:
     content:
       title: News
       subtitle: ''
-      text: ''
+      text: |-
+        {{< news_month_filter >}}
       count: 6
       filters:
         folders:
@@ -114,15 +115,6 @@ sections:
       order: desc
     design:
       view: compact
-      columns: '1'
-
-  - block: markdown
-    content:
-      title: 按月份筛选
-      subtitle: ''
-      text: |-
-        {{< news_month_filter >}}
-    design:
       columns: '1'
 
 
