@@ -1,0 +1,262 @@
+<!-- Custom Skills Display -->
+{{ $skills := site.Params.skills }}
+{{ if not $skills }}
+  {{ $author := site.GetPage "/authors/admin" }}
+  {{ if $author }}
+    {{ $skills = $author.Params.skills }}
+  {{ end }}
+{{ end }}
+
+<div class="skills-container">
+  {{ range $index, $category := $skills }}
+  <div class="skill-category {{ if eq $index 0 }}main-skills{{ else if eq $category.name "Technologies" }}tech-skills{{ else }}hobby-skills{{ end }}">
+    <div class="category-header">
+      <h3 class="category-title">{{ $category.name }}</h3>
+      <div class="category-line"></div>
+    </div>
+    <div class="skills-grid">
+      {{ range $category.items }}
+      <div class="skill-item">
+        <div class="skill-icon-wrapper">
+          {{ if eq .icon_pack "fas" }}
+          <i class="fas fa-{{ .icon }}"></i>
+          {{ else if eq .icon_pack "custom" }}
+          <img src="/media/icons/skills/{{ .icon }}.svg" alt="{{ .name }}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="icon-fallback" style="display:none;">
+            <i class="fas fa-code"></i>
+          </div>
+          {{ else }}
+          <i class="fas fa-star"></i>
+          {{ end }}
+        </div>
+        <span class="skill-name">{{ .name }}</span>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+</div>
+
+<style>
+/* Skills Container */
+.skills-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+@media (max-width: 992px) {
+  .skills-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Skill Category */
+.skill-category {
+  background: white;
+  border-radius: 20px;
+  padding: 1.75rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+.skill-category:hover {
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.12);
+  transform: translateY(-4px);
+}
+
+/* Main skills takes full width on first row */
+.main-skills {
+  grid-column: 1 / -1;
+}
+
+/* Category Header */
+.category-header {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.category-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #667eea;
+  margin: 0 0 0.75rem 0;
+  display: inline-block;
+}
+
+.category-line {
+  height: 3px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, transparent 100%);
+  border-radius: 2px;
+  width: 100%;
+}
+
+/* Skills Grid */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+.main-skills .skills-grid {
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+}
+
+@media (max-width: 576px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Skill Item */
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem 0.75rem;
+  background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: default;
+  border: 1px solid transparent;
+}
+
+.skill-item:hover {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+.skill-item:hover .skill-icon-wrapper {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.skill-item:hover .skill-icon-wrapper img {
+  filter: brightness(0) invert(1);
+}
+
+.skill-item:hover .skill-name {
+  color: white;
+}
+
+/* Skill Icon */
+.skill-icon-wrapper {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 14px;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.skill-icon-wrapper i {
+  font-size: 1.5rem;
+  color: #667eea;
+  transition: color 0.3s ease;
+}
+
+.skill-icon-wrapper img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  transition: filter 0.3s ease;
+}
+
+.icon-fallback {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-fallback i {
+  font-size: 1.5rem;
+  color: #667eea;
+}
+
+/* Skill Name */
+.skill-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #444;
+  text-align: center;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+}
+
+/* Technology Category Special Style */
+.tech-skills .skill-item {
+  background: linear-gradient(135deg, #fff5f5 0%, #fff0f5 100%);
+}
+
+.tech-skills .skill-item:hover {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.tech-skills .category-title {
+  color: #f5576c;
+}
+
+.tech-skills .category-line {
+  background: linear-gradient(90deg, #f093fb 0%, #f5576c 50%, transparent 100%);
+}
+
+.tech-skills .skill-icon-wrapper i {
+  color: #f5576c;
+}
+
+/* Hobby Category Special Style */
+.hobby-skills .skill-item {
+  background: linear-gradient(135deg, #f0fff4 0%, #e6ffed 100%);
+}
+
+.hobby-skills .skill-item:hover {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.hobby-skills .category-title {
+  color: #11998e;
+}
+
+.hobby-skills .category-line {
+  background: linear-gradient(90deg, #11998e 0%, #38ef7d 50%, transparent 100%);
+}
+
+.hobby-skills .skill-icon-wrapper i {
+  color: #11998e;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.skill-item {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.skill-item:nth-child(1) { animation-delay: 0.05s; }
+.skill-item:nth-child(2) { animation-delay: 0.1s; }
+.skill-item:nth-child(3) { animation-delay: 0.15s; }
+.skill-item:nth-child(4) { animation-delay: 0.2s; }
+.skill-item:nth-child(5) { animation-delay: 0.25s; }
+.skill-item:nth-child(6) { animation-delay: 0.3s; }
+.skill-item:nth-child(7) { animation-delay: 0.35s; }
+.skill-item:nth-child(8) { animation-delay: 0.4s; }
+</style>

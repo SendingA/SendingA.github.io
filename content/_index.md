@@ -62,14 +62,17 @@ sections:
       spacing:
         padding: ['60px', '0', '60px', '0']       
 
-  - block: skills
+  - block: markdown
+    id: skills
     content:
       title: Skill Set
-      text: ''
-      # Choose a user to display skills from (a folder name within `content/authors/`)
-      username: admin
+      subtitle: ''
+      text: |-
+        {{< skills_display >}}
     design:
       columns: '1'
+      spacing:
+        padding: ['60px', '0', '60px', '0']
 
   - block: experience
     content:
