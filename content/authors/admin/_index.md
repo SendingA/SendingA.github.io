@@ -88,7 +88,7 @@ skills:
 
   - name: Technologies
     items:
-      - name: Sensing and Signal Prosessing
+      - name: Sensing and Signal Processing
         icon: Sensing
         icon_pack: custom
       - name: AI & ML
@@ -97,9 +97,15 @@ skills:
       - name: Embedded Development
         icon: Embedded-Development
         icon_pack: custom
-      - name: Self Motivation and Enthusiasm
-        icon: Self-Motivation
-        icon_pack: custom
+      - name: Wireless Networks
+        icon: wifi
+        icon_pack: fas
+      - name: IoT Security
+        icon: shield-halved
+        icon_pack: fas
+      - name: Mobile Computing
+        icon: mobile-screen-button
+        icon_pack: fas
 
 # - name: Software and Hardware
 #     items:
