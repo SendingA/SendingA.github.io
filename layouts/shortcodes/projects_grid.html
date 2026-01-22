@@ -1,0 +1,240 @@
+<!-- Projects Grid with 4 pinned projects and Read More -->
+{{ $allProjects := (where site.RegularPages "Section" "project").ByDate.Reverse }}
+{{ $pinnedCount := 4 }}
+{{ $pinnedProjects := first $pinnedCount $allProjects }}
+{{ $totalProjects := len $allProjects }}
+
+<div class="projects-grid-container">
+  <!-- 4-Grid Layout for Pinned Projects -->
+  <div class="projects-grid">
+    {{ range $index, $project := $pinnedProjects }}
+    <div class="project-card">
+      <a href="{{ $project.RelPermalink }}" class="project-link">
+        <div class="project-image">
+          {{ $image := $project.Resources.GetMatch "featured*" }}
+          {{ if $image }}
+          <img src="{{ $image.RelPermalink }}" alt="{{ $project.Title }}" loading="lazy">
+          {{ else }}
+          <div class="project-placeholder">
+            <i class="fas fa-project-diagram"></i>
+          </div>
+          {{ end }}
+          <div class="project-overlay">
+            <span class="view-project">View Project <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3 class="project-title">{{ $project.Title }}</h3>
+          {{ with $project.Params.summary }}
+          <p class="project-summary">{{ . | truncate 100 }}</p>
+          {{ end }}
+          {{ with $project.Params.tags }}
+          <div class="project-tags">
+            {{ range first 2 . }}
+            <span class="project-tag">{{ . }}</span>
+            {{ end }}
+          </div>
+          {{ end }}
+        </div>
+      </a>
+    </div>
+    {{ end }}
+  </div>
+
+  <!-- Read More Button -->
+  {{ if gt $totalProjects $pinnedCount }}
+  <div class="projects-read-more">
+    <a href="/project" class="btn-read-more">
+      <span>Explore All {{ $totalProjects }} Projects</span>
+      <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+  {{ end }}
+</div>
+
+<style>
+/* Projects Grid Container */
+.projects-grid-container {
+  padding: 1rem 0;
+}
+
+/* 4-Grid Layout */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 992px) {
+  .projects-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Project Card */
+.project-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e9ecef;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.2);
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+.project-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Project Image */
+.project-image {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.1);
+}
+
+.project-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 3rem;
+  opacity: 0.7;
+}
+
+/* Project Overlay */
+.project-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+  padding: 2rem 1rem 1rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.view-project {
+  color: white;
+  font-weight: 600;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Project Info */
+.project-info {
+  padding: 1.25rem;
+}
+
+.project-title {
+  margin: 0 0 0.75rem 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #333;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.project-summary {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Project Tags */
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.project-tag {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  color: #667eea;
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Read More Button */
+.projects-read-more {
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.btn-read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.btn-read-more:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  color: white;
+}
+
+.btn-read-more i {
+  transition: transform 0.3s ease;
+}
+
+.btn-read-more:hover i {
+  transform: translateX(5px);
+}
+</style>

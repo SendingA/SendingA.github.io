@@ -1,0 +1,342 @@
+<!-- Gallery Slider with 3 visible photos -->
+{{ $album := .Get "album" | default "life" }}
+{{ $albumPath := printf "media/albums/%s/*" $album }}
+{{ $images := resources.Match $albumPath }}
+{{ $visibleCount := 3 }}
+{{ $totalImages := len $images }}
+
+<div class="gallery-slider-container">
+  <!-- Gallery Slider -->
+  <div class="gallery-slider">
+    <div class="gallery-track" id="gallery-track">
+      {{ range $index, $image := $images }}
+      <div class="gallery-slide {{ if lt $index $visibleCount }}active{{ end }}" data-index="{{ $index }}">
+        <a href="{{ $image.RelPermalink }}" data-lightbox="gallery" data-title="Photo {{ add $index 1 }}">
+          <img src="{{ ($image.Fit "600x400").RelPermalink }}" alt="Gallery image {{ add $index 1 }}" loading="lazy">
+        </a>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+
+  <!-- Gallery Controls -->
+  <div class="gallery-controls">
+    <div class="gallery-nav">
+      <button class="gallery-nav-btn" id="gallery-prev" {{ if le $totalImages $visibleCount }}disabled{{ end }}>
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <div class="gallery-indicator">
+        <span id="gallery-current">1</span> - <span id="gallery-showing">{{ if gt $totalImages $visibleCount }}{{ $visibleCount }}{{ else }}{{ $totalImages }}{{ end }}</span> / {{ $totalImages }}
+      </div>
+      <button class="gallery-nav-btn" id="gallery-next" {{ if le $totalImages $visibleCount }}disabled{{ end }}>
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+    
+    <a href="/albums/{{ $album }}" class="btn-view-all">
+      <i class="fas fa-images"></i>
+      <span>View All Photos</span>
+    </a>
+  </div>
+
+  <!-- Dots Indicator -->
+  {{ if gt $totalImages $visibleCount }}
+  <div class="gallery-dots" id="gallery-dots">
+    {{ $pages := div (add $totalImages (sub $visibleCount 1)) $visibleCount }}
+    {{ range $i := seq $pages }}
+    <span class="gallery-dot {{ if eq $i 1 }}active{{ end }}" data-page="{{ sub $i 1 }}"></span>
+    {{ end }}
+  </div>
+  {{ end }}
+</div>
+
+<style>
+/* Gallery Slider Container */
+.gallery-slider-container {
+  padding: 1rem 0;
+}
+
+/* Gallery Slider */
+.gallery-slider {
+  overflow: hidden;
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+}
+
+.gallery-track {
+  display: flex;
+  gap: 1rem;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Gallery Slide */
+.gallery-slide {
+  flex: 0 0 calc((100% - 2rem) / 3);
+  min-width: calc((100% - 2rem) / 3);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+}
+
+@media (max-width: 992px) {
+  .gallery-slide {
+    flex: 0 0 calc((100% - 1rem) / 2);
+    min-width: calc((100% - 1rem) / 2);
+  }
+}
+
+@media (max-width: 576px) {
+  .gallery-slide {
+    flex: 0 0 100%;
+    min-width: 100%;
+  }
+  
+  .gallery-track {
+    gap: 0.75rem;
+  }
+}
+
+.gallery-slide:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.25);
+}
+
+.gallery-slide a {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-slide img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-slide:hover img {
+  transform: scale(1.1);
+}
+
+/* Gallery Controls */
+.gallery-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Navigation Buttons */
+.gallery-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.gallery-nav-btn {
+  width: 44px;
+  height: 44px;
+  border: 2px solid #e9ecef;
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #667eea;
+  transition: all 0.3s ease;
+}
+
+.gallery-nav-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: #667eea;
+  transform: scale(1.05);
+}
+
+.gallery-nav-btn:disabled {
+  background: #f8f9fa;
+  color: #ced4da;
+  cursor: not-allowed;
+  border-color: #e9ecef;
+}
+
+.gallery-indicator {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+  min-width: 80px;
+  text-align: center;
+}
+
+#gallery-current, #gallery-showing {
+  color: #667eea;
+}
+
+/* View All Button */
+.btn-view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
+}
+
+.btn-view-all:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.35);
+  color: white;
+}
+
+/* Gallery Dots */
+.gallery-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+.gallery-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #e9ecef;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gallery-dot:hover {
+  background: rgba(102, 126, 234, 0.5);
+}
+
+.gallery-dot.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  width: 30px;
+  border-radius: 5px;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const track = document.getElementById('gallery-track');
+  const prevBtn = document.getElementById('gallery-prev');
+  const nextBtn = document.getElementById('gallery-next');
+  const currentSpan = document.getElementById('gallery-current');
+  const showingSpan = document.getElementById('gallery-showing');
+  const dotsContainer = document.getElementById('gallery-dots');
+  
+  if (!track) return;
+  
+  const slides = track.querySelectorAll('.gallery-slide');
+  const totalImages = slides.length;
+  
+  // Determine visible count based on screen width
+  function getVisibleCount() {
+    if (window.innerWidth <= 576) return 1;
+    if (window.innerWidth <= 992) return 2;
+    return 3;
+  }
+  
+  let visibleCount = getVisibleCount();
+  let currentIndex = 0;
+  const maxIndex = Math.max(0, totalImages - visibleCount);
+  
+  function updateGallery() {
+    const slideWidth = slides[0].offsetWidth + 16; // Include gap
+    track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+    
+    // Update indicator
+    if (currentSpan && showingSpan) {
+      currentSpan.textContent = currentIndex + 1;
+      showingSpan.textContent = Math.min(currentIndex + visibleCount, totalImages);
+    }
+    
+    // Update buttons
+    if (prevBtn) prevBtn.disabled = currentIndex === 0;
+    if (nextBtn) nextBtn.disabled = currentIndex >= maxIndex;
+    
+    // Update dots
+    if (dotsContainer) {
+      const dots = dotsContainer.querySelectorAll('.gallery-dot');
+      const activePage = Math.floor(currentIndex / visibleCount);
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === activePage);
+      });
+    }
+  }
+  
+  if (prevBtn) {
+    prevBtn.addEventListener('click', function() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateGallery();
+      }
+    });
+  }
+  
+  if (nextBtn) {
+    nextBtn.addEventListener('click', function() {
+      if (currentIndex < maxIndex) {
+        currentIndex++;
+        updateGallery();
+      }
+    });
+  }
+  
+  // Dot click
+  if (dotsContainer) {
+    dotsContainer.querySelectorAll('.gallery-dot').forEach(dot => {
+      dot.addEventListener('click', function() {
+        const page = parseInt(this.dataset.page);
+        currentIndex = Math.min(page * visibleCount, maxIndex);
+        updateGallery();
+      });
+    });
+  }
+  
+  // Handle resize
+  window.addEventListener('resize', function() {
+    const newVisibleCount = getVisibleCount();
+    if (newVisibleCount !== visibleCount) {
+      visibleCount = newVisibleCount;
+      currentIndex = Math.min(currentIndex, Math.max(0, totalImages - visibleCount));
+      updateGallery();
+    }
+  });
+  
+  // Touch/swipe support
+  let startX = 0;
+  let isDragging = false;
+  
+  track.addEventListener('touchstart', function(e) {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+  });
+  
+  track.addEventListener('touchend', function(e) {
+    if (!isDragging) return;
+    isDragging = false;
+    
+    const endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
+    
+    if (Math.abs(diff) > 50) {
+      if (diff > 0 && currentIndex < maxIndex) {
+        currentIndex++;
+      } else if (diff < 0 && currentIndex > 0) {
+        currentIndex--;
+      }
+      updateGallery();
+    }
+  });
+});
+</script>
