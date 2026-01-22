@@ -21,7 +21,7 @@ removePathAccents: true
 
 enableGitInfo: false
 summaryLength: 30
-paginate: 5
+paginate: 4
 enableEmoji: true
 enableRobotsTXT: true
 footnotereturnlinkcontents: <sup>^</sup>
