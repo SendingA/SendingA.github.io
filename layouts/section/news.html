@@ -9,14 +9,36 @@
     </div>
     {{ end }}
 
-    <!-- Modern Calendar Filter -->
-    <div class="news-filter-section mb-5">
+    <!-- Compact Filter Bar with Calendar Icon -->
+    <div class="news-filter-bar mb-4">
+      <div class="filter-actions">
+        <button class="btn-calendar-toggle" id="calendar-toggle-btn" title="Filter by date">
+          <i class="fas fa-calendar-alt me-2"></i>
+          <span>Filter by Date</span>
+        </button>
+        <button class="btn-reset-filter" id="reset-filter-btn" style="display: none;">
+          <i class="fas fa-times me-1"></i>
+          <span>Clear Filter</span>
+        </button>
+      </div>
+      <div class="filter-info" id="filter-info">
+        <span class="text-muted">Showing all news</span>
+      </div>
+    </div>
+
+    <!-- Collapsible Calendar Filter (Hidden by default) -->
+    <div class="news-filter-section mb-4" id="calendar-filter-section" style="display: none;">
       <div class="row">
         <div class="col-lg-12">
           <div class="calendar-filter-container">
-            <h3 class="filter-title">
-              <i class="fas fa-calendar-alt me-2"></i>Filter by Month
-            </h3>
+            <div class="calendar-header">
+              <h4 class="filter-title">
+                <i class="fas fa-calendar-alt me-2"></i>Select Date
+              </h4>
+              <button class="btn-close-calendar" id="close-calendar-btn">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
             <div class="calendar-grid" id="calendar-filter">
               {{ $currentYear := now.Year }}
               {{ $years := slice }}
@@ -37,26 +59,28 @@
               {{ range $years }}
                 {{ $year := . }}
                 <div class="year-section">
-                  <h4 class="year-label">{{ $year }}</h4>
+                  <h5 class="year-label">{{ $year }}</h5>
                   <div class="months-grid">
                     {{ range $month := (seq 12) }}
                       {{ $monthStr := printf "%d-%02d" $year $month }}
                       {{ $hasNews := false }}
                       {{ $newsCount := 0 }}
+                      {{ $newsDates := slice }}
                       
-                      <!-- Check if there are news in this month -->
+                      <!-- Check if there are news in this month and collect dates -->
                       {{ range $.Site.RegularPages }}
                         {{ if eq .Section "news" }}
                           {{ if eq (.Date.Format "2006-01") $monthStr }}
                             {{ $hasNews = true }}
                             {{ $newsCount = add $newsCount 1 }}
+                            {{ $newsDates = $newsDates | append (.Date.Format "2006-01-02") }}
                           {{ end }}
                         {{ end }}
                       {{ end }}
                       
                       {{ $monthName := (time (printf "%d-%02d-01" $year $month)).Format "Jan" }}
                       {{ if $hasNews }}
-                        <button class="month-btn active" data-month="{{ $monthStr }}" data-count="{{ $newsCount }}">
+                        <button class="month-btn active" data-month="{{ $monthStr }}" data-count="{{ $newsCount }}" data-dates='{{ $newsDates | jsonify }}'>
                           <span class="month-name">{{ $monthName }}</span>
                           <span class="news-badge">{{ $newsCount }}</span>
                         </button>
@@ -67,12 +91,14 @@
                       {{ end }}
                     {{ end }}
                   </div>
+                  
+                  <!-- Day selector for selected month -->
+                  <div class="days-selector" id="days-{{ $year }}" style="display: none;">
+                    <h6 class="days-title">Select specific date:</h6>
+                    <div class="days-grid"></div>
+                  </div>
                 </div>
               {{ end }}
-              
-              <button class="btn btn-primary mt-3" id="show-all-btn">
-                <i class="fas fa-list me-2"></i>Show All News
-              </button>
             </div>
           </div>
         </div>
@@ -84,6 +110,7 @@
       <h3 class="section-heading mb-4">
         <i class="fas fa-newspaper me-2"></i>
         <span id="timeline-title">Recent Updates</span>
+        <span class="news-count-badge" id="news-count-badge"></span>
       </h3>
       
       <div class="news-timeline" id="news-container">
@@ -97,11 +124,12 @@
         {{ end }}
         
         {{ range $paginator.Pages }}
-        <div class="news-item" data-month="{{ .Date.Format "2006-01" }}">
+        <div class="news-item" data-month="{{ .Date.Format "2006-01" }}" data-date="{{ .Date.Format "2006-01-02" }}">
           <div class="news-date-marker">
             <div class="date-circle">
               <span class="day">{{ .Date.Format "02" }}</span>
               <span class="month">{{ .Date.Format "Jan" }}</span>
+              <span class="year">{{ .Date.Format "2006" }}</span>
             </div>
             <div class="timeline-line"></div>
           </div>
@@ -185,56 +213,158 @@
 </article>
 
 <style>
-/* Modern News Page Styles */
+/* Compact Filter Bar */
+.news-filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+}
+
+.filter-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.btn-calendar-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.25);
+}
+
+.btn-calendar-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.btn-reset-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.25);
+}
+
+.btn-reset-filter:hover {
+  background: #c82333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+}
+
+.filter-info {
+  color: #6c757d;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.filter-info.active {
+  color: #667eea;
+  font-weight: 600;
+}
+
+/* Collapsible Calendar Section */
 .news-filter-section {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 20px;
-  padding: 2rem;
-  box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
-  margin-bottom: 3rem;
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.3);
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .calendar-filter-container {
   background: white;
-  border-radius: 15px;
-  padding: 2rem;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
 }
 
 .filter-title {
   color: #667eea;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  margin-bottom: 1.5rem;
+  margin: 0;
   display: flex;
   align-items: center;
 }
 
+.btn-close-calendar {
+  background: none;
+  border: none;
+  color: #6c757d;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+}
+
+.btn-close-calendar:hover {
+  background: #f8f9fa;
+  color: #dc3545;
+}
+
 .year-section {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .year-label {
   color: #333;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   padding-left: 0.5rem;
   border-left: 4px solid #667eea;
 }
 
 .months-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-  gap: 0.75rem;
-  margin-bottom: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  gap: 0.6rem;
 }
 
 .month-btn {
   position: relative;
   background: #f8f9fa;
   border: 2px solid #e9ecef;
-  border-radius: 12px;
-  padding: 0.75rem 0.5rem;
+  border-radius: 10px;
+  padding: 0.6rem 0.4rem;
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 500;
@@ -271,10 +401,11 @@
   color: white;
   border-color: #28a745;
   box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+  transform: scale(1.05);
 }
 
 .month-name {
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   font-weight: 600;
 }
 
@@ -283,9 +414,9 @@
   color: #667eea;
   border-radius: 10px;
   padding: 0.125rem 0.5rem;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  min-width: 24px;
+  min-width: 22px;
 }
 
 .month-btn.selected .news-badge {
@@ -296,19 +427,60 @@
   background: rgba(255, 255, 255, 1);
 }
 
-#show-all-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border: none;
+/* Days Selector */
+.days-selector {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
   border-radius: 10px;
-  padding: 0.75rem 2rem;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  animation: slideDown 0.3s ease;
 }
 
-#show-all-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+.days-title {
+  color: #667eea;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
+  gap: 0.5rem;
+}
+
+.day-btn {
+  background: white;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  text-align: center;
+  color: #333;
+  font-size: 0.85rem;
+}
+
+.day-btn:hover {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: #667eea;
+  transform: scale(1.05);
+}
+
+.day-btn.selected {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  border-color: #28a745;
+  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.4);
+}
+
+.day-btn.disabled {
+  background: #f8f9fa;
+  color: #ced4da;
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 /* News Timeline Styles */
@@ -318,8 +490,20 @@
   font-weight: 700;
   display: flex;
   align-items: center;
+  gap: 1rem;
   padding-bottom: 1rem;
   border-bottom: 3px solid #667eea;
+}
+
+.news-count-badge {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  min-width: 40px;
+  text-align: center;
 }
 
 .news-timeline {
@@ -366,10 +550,18 @@
 
 .date-circle .month {
   display: block;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   font-weight: 500;
   opacity: 0.9;
   text-transform: uppercase;
+}
+
+.date-circle .year {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  opacity: 0.8;
+  margin-top: 0.125rem;
 }
 
 .timeline-line {
@@ -523,6 +715,45 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .news-filter-bar {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: stretch;
+  }
+  
+  .filter-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .btn-calendar-toggle,
+  .btn-reset-filter {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .filter-info {
+    text-align: center;
+  }
+  
+  .news-filter-section {
+    padding: 1rem;
+  }
+  
+  .calendar-filter-container {
+    padding: 1rem;
+  }
+  
+  .calendar-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .btn-close-calendar {
+    align-self: flex-end;
+  }
+  
   .months-grid {
     grid-template-columns: repeat(4, 1fr);
     gap: 0.5rem;
@@ -530,6 +761,10 @@
   
   .month-btn {
     padding: 0.5rem 0.25rem;
+  }
+  
+  .days-grid {
+    grid-template-columns: repeat(7, 1fr);
   }
   
   .news-item {
@@ -547,66 +782,215 @@
   
   .section-heading {
     font-size: 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .news-count-badge {
+    font-size: 0.75rem;
   }
 }
 
 @media (max-width: 576px) {
+  .news-filter-bar {
+    padding: 0.75rem;
+  }
+  
+  .btn-calendar-toggle,
+  .btn-reset-filter {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .filter-info {
+    font-size: 0.85rem;
+  }
+  
   .months-grid {
     grid-template-columns: repeat(3, 1fr);
   }
   
-  .news-filter-section {
-    padding: 1rem;
+  .days-grid {
+    grid-template-columns: repeat(5, 1fr);
   }
   
-  .calendar-filter-container {
-    padding: 1rem;
+  .year-label {
+    font-size: 1rem;
+  }
+  
+  .filter-title {
+    font-size: 1.1rem;
+  }
+  
+  .section-heading {
+    font-size: 1.25rem;
+  }
+  
+  .date-circle {
+    min-width: 60px;
+    padding: 0.6rem;
+  }
+  
+  .date-circle .day {
+    font-size: 1.25rem;
+  }
+  
+  .date-circle .month {
+    font-size: 0.75rem;
+  }
+  
+  .date-circle .year {
+    font-size: 0.65rem;
   }
 }
 </style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  const calendarToggleBtn = document.getElementById('calendar-toggle-btn');
+  const calendarSection = document.getElementById('calendar-filter-section');
+  const closeCalendarBtn = document.getElementById('close-calendar-btn');
+  const resetFilterBtn = document.getElementById('reset-filter-btn');
+  const filterInfo = document.getElementById('filter-info');
   const monthButtons = document.querySelectorAll('.month-btn.active');
   const newsItems = document.querySelectorAll('.news-item');
-  const showAllBtn = document.getElementById('show-all-btn');
   const timelineTitle = document.getElementById('timeline-title');
+  const newsCountBadge = document.getElementById('news-count-badge');
   
   let selectedMonth = null;
+  let selectedDate = null;
+  let currentDaysSelector = null;
+  
+  // Update news count badge
+  function updateNewsCount(count) {
+    if (count > 0) {
+      newsCountBadge.textContent = count;
+      newsCountBadge.style.display = 'inline-block';
+    } else {
+      newsCountBadge.style.display = 'none';
+    }
+  }
+  
+  // Initial count
+  updateNewsCount(newsItems.length);
+  
+  // Toggle calendar visibility
+  calendarToggleBtn.addEventListener('click', function() {
+    if (calendarSection.style.display === 'none') {
+      calendarSection.style.display = 'block';
+      calendarToggleBtn.innerHTML = '<i class="fas fa-calendar-alt me-2"></i><span>Hide Calendar</span>';
+    } else {
+      calendarSection.style.display = 'none';
+      calendarToggleBtn.innerHTML = '<i class="fas fa-calendar-alt me-2"></i><span>Filter by Date</span>';
+    }
+  });
+  
+  // Close calendar
+  closeCalendarBtn.addEventListener('click', function() {
+    calendarSection.style.display = 'none';
+    calendarToggleBtn.innerHTML = '<i class="fas fa-calendar-alt me-2"></i><span>Filter by Date</span>';
+  });
+  
+  // Reset filter
+  resetFilterBtn.addEventListener('click', function() {
+    monthButtons.forEach(b => b.classList.remove('selected'));
+    document.querySelectorAll('.day-btn').forEach(d => d.classList.remove('selected'));
+    document.querySelectorAll('.days-selector').forEach(ds => ds.style.display = 'none');
+    selectedMonth = null;
+    selectedDate = null;
+    currentDaysSelector = null;
+    showAllNews();
+    resetFilterBtn.style.display = 'none';
+    filterInfo.innerHTML = '<span class="text-muted">Showing all news</span>';
+    filterInfo.classList.remove('active');
+  });
   
   // Month filter functionality
   monthButtons.forEach(btn => {
     btn.addEventListener('click', function() {
       const month = this.getAttribute('data-month');
+      const dates = JSON.parse(this.getAttribute('data-dates') || '[]');
+      const yearSection = this.closest('.year-section');
+      const daysSelector = yearSection.querySelector('.days-selector');
+      
+      // Hide previous days selector if different month
+      if (currentDaysSelector && currentDaysSelector !== daysSelector) {
+        currentDaysSelector.style.display = 'none';
+      }
       
       // Toggle selection
-      if (selectedMonth === month) {
-        // Deselect
-        selectedMonth = null;
+      if (selectedMonth === month && !selectedDate) {
+        // Deselect month
         this.classList.remove('selected');
+        selectedMonth = null;
+        daysSelector.style.display = 'none';
         showAllNews();
+        resetFilterBtn.style.display = 'none';
+        filterInfo.innerHTML = '<span class="text-muted">Showing all news</span>';
+        filterInfo.classList.remove('active');
       } else {
         // Select new month
         monthButtons.forEach(b => b.classList.remove('selected'));
         this.classList.add('selected');
         selectedMonth = month;
+        selectedDate = null;
+        
+        // Show days selector
+        if (dates.length > 0) {
+          renderDaysSelector(daysSelector, dates, month);
+          daysSelector.style.display = 'block';
+          currentDaysSelector = daysSelector;
+        }
+        
         filterByMonth(month);
+        resetFilterBtn.style.display = 'inline-flex';
       }
     });
   });
   
-  // Show all button
-  showAllBtn.addEventListener('click', function() {
-    monthButtons.forEach(b => b.classList.remove('selected'));
-    selectedMonth = null;
-    showAllNews();
-  });
+  // Render days selector
+  function renderDaysSelector(container, dates, month) {
+    const daysGrid = container.querySelector('.days-grid');
+    daysGrid.innerHTML = '';
+    
+    // Get unique dates and sort
+    const uniqueDates = [...new Set(dates)].sort();
+    
+    uniqueDates.forEach(date => {
+      const dayNum = new Date(date).getDate();
+      const dayBtn = document.createElement('button');
+      dayBtn.className = 'day-btn';
+      dayBtn.textContent = dayNum;
+      dayBtn.setAttribute('data-date', date);
+      
+      dayBtn.addEventListener('click', function() {
+        const clickedDate = this.getAttribute('data-date');
+        
+        if (selectedDate === clickedDate) {
+          // Deselect date, show all news in month
+          this.classList.remove('selected');
+          selectedDate = null;
+          filterByMonth(month);
+        } else {
+          // Select date
+          daysGrid.querySelectorAll('.day-btn').forEach(d => d.classList.remove('selected'));
+          this.classList.add('selected');
+          selectedDate = clickedDate;
+          filterByDate(clickedDate);
+        }
+      });
+      
+      daysGrid.appendChild(dayBtn);
+    });
+  }
   
+  // Filter by month
   function filterByMonth(month) {
     const [year, monthNum] = month.split('-');
     const monthName = new Date(year, parseInt(monthNum) - 1).toLocaleString('default', { month: 'long', year: 'numeric' });
     
     timelineTitle.textContent = `News from ${monthName}`;
+    filterInfo.innerHTML = `<span>Filtered: ${monthName}</span>`;
+    filterInfo.classList.add('active');
     
     let visibleCount = 0;
     newsItems.forEach(item => {
@@ -619,34 +1003,65 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     
-    // Show message if no news found
-    const newsContainer = document.getElementById('news-container');
-    let noNewsMsg = newsContainer.querySelector('.no-news-message');
+    updateNewsCount(visibleCount);
+    showNoNewsMessage(visibleCount);
+  }
+  
+  // Filter by specific date
+  function filterByDate(date) {
+    const dateObj = new Date(date);
+    const formattedDate = dateObj.toLocaleString('default', { month: 'long', day: 'numeric', year: 'numeric' });
     
-    if (visibleCount === 0) {
+    timelineTitle.textContent = `News on ${formattedDate}`;
+    filterInfo.innerHTML = `<span>Filtered: ${formattedDate}</span>`;
+    filterInfo.classList.add('active');
+    
+    let visibleCount = 0;
+    newsItems.forEach(item => {
+      const itemDate = item.getAttribute('data-date');
+      if (itemDate === date) {
+        item.classList.remove('hidden');
+        visibleCount++;
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+    
+    updateNewsCount(visibleCount);
+    showNoNewsMessage(visibleCount);
+  }
+  
+  // Show all news
+  function showAllNews() {
+    timelineTitle.textContent = 'Recent Updates';
+    newsItems.forEach(item => {
+      item.classList.remove('hidden');
+    });
+    updateNewsCount(newsItems.length);
+    
+    const newsContainer = document.getElementById('news-container');
+    const noNewsMsg = newsContainer.querySelector('.no-news-message-filter');
+    if (noNewsMsg) {
+      noNewsMsg.remove();
+    }
+  }
+  
+  // Show no news message
+  function showNoNewsMessage(count) {
+    const newsContainer = document.getElementById('news-container');
+    let noNewsMsg = newsContainer.querySelector('.no-news-message-filter');
+    
+    if (count === 0) {
       if (!noNewsMsg) {
         noNewsMsg = document.createElement('div');
-        noNewsMsg.className = 'no-news-message';
-        noNewsMsg.innerHTML = '<i class="fas fa-info-circle"></i><p>No news found for this month.</p>';
+        noNewsMsg.className = 'no-news-message no-news-message-filter';
+        noNewsMsg.innerHTML = '<i class="fas fa-info-circle"></i><p>No news found for the selected date.</p>';
         newsContainer.appendChild(noNewsMsg);
       }
     } else {
       if (noNewsMsg) {
         noNewsMsg.remove();
       }
-    }
-  }
-  
-  function showAllNews() {
-    timelineTitle.textContent = 'Recent Updates';
-    newsItems.forEach(item => {
-      item.classList.remove('hidden');
-    });
-    
-    const newsContainer = document.getElementById('news-container');
-    const noNewsMsg = newsContainer.querySelector('.no-news-message');
-    if (noNewsMsg) {
-      noNewsMsg.remove();
     }
   }
 });

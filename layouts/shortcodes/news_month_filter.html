@@ -1,199 +1,52 @@
-<!-- Modern Calendar Filter Widget for Homepage News Section -->
-<div class="modern-news-calendar">
-  {{ $currentYear := now.Year }}
-  {{ $years := slice }}
-  
-  <!-- Collect all years from news posts -->
-  {{ range site.RegularPages }}
-    {{ if eq .Section "news" }}
-      {{ $year := .Date.Year }}
-      {{ if not (in $years $year) }}
-        {{ $years = $years | append $year }}
-      {{ end }}
-    {{ end }}
-  {{ end }}
-  
-  {{ $years = sort $years "value" "desc" }}
-  
-  <!-- Calendar View -->
-  <div class="calendar-widget">
-    {{ range $years }}
-      {{ $year := . }}
-      <div class="calendar-year-block">
-        <h5 class="calendar-year-label">{{ $year }}</h5>
-        <div class="calendar-months">
-          {{ range $month := (seq 12) }}
-            {{ $monthStr := printf "%d-%02d" $year $month }}
-            {{ $hasNews := false }}
-            {{ $newsCount := 0 }}
-            
-            <!-- Check if there are news in this month -->
-            {{ range site.RegularPages }}
-              {{ if eq .Section "news" }}
-                {{ if eq (.Date.Format "2006-01") $monthStr }}
-                  {{ $hasNews = true }}
-                  {{ $newsCount = add $newsCount 1 }}
-                {{ end }}
-              {{ end }}
-            {{ end }}
-            
-            {{ $monthName := (time (printf "%d-%02d-01" $year $month)).Format "Jan" }}
-            {{ if $hasNews }}
-              <a href="/news#month-{{ $monthStr }}" class="month-link" data-month="{{ $monthStr }}">
-                <span class="month-abbr">{{ $monthName }}</span>
-                <span class="count-badge">{{ $newsCount }}</span>
-              </a>
-            {{ else }}
-              <span class="month-link inactive">
-                <span class="month-abbr">{{ $monthName }}</span>
-              </span>
-            {{ end }}
-          {{ end }}
-        </div>
-      </div>
-    {{ end }}
-    
-    <div class="calendar-actions">
-      <a href="/news" class="btn-view-all">
-        <i class="fas fa-list"></i> View All News
-      </a>
-    </div>
+<!-- Compact News Calendar Widget for Homepage -->
+<div class="homepage-news-filter">
+  <div class="filter-header">
+    <a href="/news" class="btn-view-all-news">
+      <i class="fas fa-calendar-alt me-2"></i>View Full News Archive
+    </a>
   </div>
 </div>
 
 <style>
-.modern-news-calendar {
-  margin: 2rem 0;
+.homepage-news-filter {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(102, 126, 234, 0.15);
 }
 
-.calendar-widget {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
-  border-radius: 15px;
-  padding: 1.5rem;
-  border: 1px solid rgba(102, 126, 234, 0.1);
-}
-
-.calendar-year-block {
-  margin-bottom: 1.5rem;
-}
-
-.calendar-year-block:last-of-type {
-  margin-bottom: 0;
-}
-
-.calendar-year-label {
-  color: #667eea;
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 0.75rem;
-  padding-left: 0.5rem;
-  border-left: 4px solid #667eea;
-}
-
-.calendar-months {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
-  gap: 0.5rem;
-}
-
-.month-link {
+.filter-header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding: 0.6rem 0.4rem;
-  background: white;
-  border: 2px solid #e9ecef;
-  border-radius: 10px;
-  text-decoration: none;
-  color: #333;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  position: relative;
-  min-height: 60px;
+  align-items: center;
 }
 
-.month-link:not(.inactive):hover {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border-color: #667eea;
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-}
-
-.month-link.inactive {
-  background: #f8f9fa;
-  color: #ced4da;
-  cursor: not-allowed;
-  opacity: 0.5;
-  border-color: #f8f9fa;
-}
-
-.month-abbr {
-  font-size: 0.85rem;
-  margin-bottom: 0.25rem;
-}
-
-.count-badge {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border-radius: 8px;
-  padding: 0.125rem 0.5rem;
-  font-size: 0.7rem;
-  font-weight: 700;
-  min-width: 22px;
-  text-align: center;
-}
-
-.month-link:hover .count-badge {
-  background: rgba(255, 255, 255, 0.9);
-  color: #667eea;
-}
-
-.calendar-actions {
-  margin-top: 1rem;
-  text-align: center;
-}
-
-.btn-view-all {
+.btn-view-all-news {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 0.6rem 1.5rem;
+  padding: 0.75rem 1.75rem;
   border-radius: 10px;
   text-decoration: none;
   font-weight: 600;
+  font-size: 0.95rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
 }
 
-.btn-view-all:hover {
+.btn-view-all-news:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.35);
   color: white;
 }
 
 @media (max-width: 768px) {
-  .calendar-months {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.4rem;
-  }
-  
-  .month-link {
-    padding: 0.5rem 0.3rem;
-    min-height: 55px;
-  }
-  
-  .month-abbr {
-    font-size: 0.75rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .calendar-months {
-    grid-template-columns: repeat(3, 1fr);
+  .btn-view-all-news {
+    padding: 0.65rem 1.5rem;
+    font-size: 0.9rem;
   }
 }
 </style>
