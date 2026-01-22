@@ -1,6 +1,6 @@
 <!-- Homepage News Block with Calendar and Pagination -->
 {{ $newsPages := (where site.RegularPages "Section" "news").ByDate.Reverse }}
-{{ $perPage := 5 }}
+{{ $perPage := 4 }}
 {{ $totalNews := len $newsPages }}
 {{ $totalPages := div (add $totalNews (sub $perPage 1)) $perPage }}
 
@@ -366,7 +366,7 @@
 var newsPagination = (function() {
   var allNews = [];
   var currentPage = 1;
-  var perPage = 5;
+  var perPage = 4;
   var totalPages = 1;
   
   // Initialize
