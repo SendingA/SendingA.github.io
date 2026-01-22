@@ -1,11 +1,6 @@
 <!-- Custom Skills Display -->
-{{ $skills := site.Params.skills }}
-{{ if not $skills }}
-  {{ $author := site.GetPage "/authors/admin" }}
-  {{ if $author }}
-    {{ $skills = $author.Params.skills }}
-  {{ end }}
-{{ end }}
+{{ $author := site.GetPage "/authors/admin" }}
+{{ $skills := $author.Params.skills }}
 
 <div class="skills-container">
   {{ range $index, $category := $skills }}
@@ -21,10 +16,13 @@
           {{ if eq .icon_pack "fas" }}
           <i class="fas fa-{{ .icon }}"></i>
           {{ else if eq .icon_pack "custom" }}
-          <img src="/media/icons/skills/{{ .icon }}.svg" alt="{{ .name }}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="icon-fallback" style="display:none;">
-            <i class="fas fa-code"></i>
-          </div>
+          {{ $iconPath := printf "media/icons/skills/%s.svg" .icon }}
+          {{ $icon := resources.Get $iconPath }}
+          {{ if $icon }}
+          <img src="{{ $icon.RelPermalink }}" alt="{{ .name }}">
+          {{ else }}
+          <i class="fas fa-code"></i>
+          {{ end }}
           {{ else }}
           <i class="fas fa-star"></i>
           {{ end }}

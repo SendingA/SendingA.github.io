@@ -145,6 +145,12 @@ skills:
       - name: Music
         icon: music
         icon_pack: fas
+      - name: Movies
+        icon: film
+        icon_pack: fas
+      - name: Video Games
+        icon: gamepad
+        icon_pack: fas
 
 # Social/Academic Networking
 # For available icons, see: https://docs.hugoblox.com/getting-started/page-builder/#icons
