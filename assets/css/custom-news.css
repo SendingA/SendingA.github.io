@@ -1,0 +1,321 @@
+/* Custom styles for News module - Modern and Beautiful Design */
+
+/* Global News Styling Enhancements */
+body {
+  --news-primary-color: #667eea;
+  --news-secondary-color: #764ba2;
+  --news-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --news-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
+  --news-hover-shadow: 0 8px 30px rgba(102, 126, 234, 0.25);
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* News section on homepage enhancements */
+.home-section#news {
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+  padding: 4rem 0;
+}
+
+/* News compact view improvements */
+.article-preview-compact {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
+}
+
+.article-preview-compact:hover {
+  box-shadow: var(--news-hover-shadow);
+  transform: translateX(4px);
+  border-left-color: var(--news-primary-color);
+}
+
+/* Date styling in compact view */
+.article-metadata {
+  color: var(--news-primary-color);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Read more link styling */
+.article-read-more {
+  color: var(--news-primary-color);
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.article-read-more:hover {
+  color: var(--news-secondary-color);
+  transform: translateX(4px);
+}
+
+.article-read-more::after {
+  content: "→";
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.article-read-more:hover::after {
+  transform: translateX(4px);
+}
+
+/* Individual news page styling */
+.article-header {
+  background: var(--news-gradient);
+  color: white;
+  padding: 3rem 0;
+  margin-bottom: 2rem;
+  border-radius: 20px;
+  box-shadow: var(--news-shadow);
+}
+
+.article-header .article-title {
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Tags styling */
+.article-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.article-tag {
+  background: var(--news-gradient);
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+}
+
+.article-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  color: white;
+}
+
+/* Enhanced section headings */
+.section-heading h2 {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+.section-heading h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--news-gradient);
+  border-radius: 2px;
+}
+
+/* News list view card styling */
+.card {
+  border-radius: 15px;
+  border: none;
+  box-shadow: var(--news-shadow);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.card:hover {
+  box-shadow: var(--news-hover-shadow);
+  transform: translateY(-4px);
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-title {
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.card-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.card-title a:hover {
+  color: var(--news-primary-color);
+}
+
+/* Improved news content typography */
+.article-content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #333;
+}
+
+.article-content p {
+  margin-bottom: 1.5rem;
+}
+
+.article-content h2,
+.article-content h3 {
+  color: var(--news-primary-color);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+/* News navigation */
+.pager {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid #e9ecef;
+}
+
+.pager-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--news-gradient);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: var(--news-shadow);
+}
+
+.pager-link:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--news-hover-shadow);
+  color: white;
+}
+
+/* Back to list button */
+.btn-back-to-list {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: white;
+  color: var(--news-primary-color);
+  border: 2px solid var(--news-primary-color);
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+.btn-back-to-list:hover {
+  background: var(--news-gradient);
+  color: white;
+  transform: translateX(-4px);
+  box-shadow: var(--news-shadow);
+}
+
+/* Loading animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.news-item,
+.article-preview-compact,
+.card {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Stagger animation for multiple items */
+.news-item:nth-child(1) { animation-delay: 0.1s; }
+.news-item:nth-child(2) { animation-delay: 0.2s; }
+.news-item:nth-child(3) { animation-delay: 0.3s; }
+.news-item:nth-child(4) { animation-delay: 0.4s; }
+.news-item:nth-child(5) { animation-delay: 0.5s; }
+.news-item:nth-child(6) { animation-delay: 0.6s; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .article-header {
+    padding: 2rem 1rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    border-radius: 0;
+  }
+  
+  .article-content {
+    font-size: 1rem;
+  }
+  
+  .pager {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .pager-link {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Dark mode support (if enabled) */
+@media (prefers-color-scheme: dark) {
+  .article-preview-compact,
+  .card,
+  .news-content-card {
+    background: #1a1a1a;
+    border-color: #333;
+  }
+  
+  .card-title,
+  .news-title a {
+    color: #f8f9fa;
+  }
+  
+  .article-content {
+    color: #e0e0e0;
+  }
+}
+
+/* Print styles */
+@media print {
+  .calendar-filter-container,
+  .news-filter-section,
+  .pagination-nav,
+  .btn-back-to-list {
+    display: none;
+  }
+  
+  .news-content-card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    page-break-inside: avoid;
+  }
+}

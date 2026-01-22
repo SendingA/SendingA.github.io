@@ -100,15 +100,15 @@ sections:
   - block: collection
     id: news
     content:
-      title: News
-      subtitle: ''
+      title: 📰 Latest News & Updates
+      subtitle: 'Stay updated with my recent activities and milestones'
       text: |-
         {{< news_month_filter >}}
-      count: 6
+      count: 5
       filters:
         folders:
           - news
-        exclude_featured: true
+        exclude_featured: false
         exclude_future: false
         exclude_past: false
       offset: 0
@@ -116,6 +116,11 @@ sections:
     design:
       view: compact
       columns: '1'
+      background:
+        color: ''
+        text_color_light: false
+      spacing:
+        padding: ['60px', '0', '60px', '0']
 
 
   # - block: accomplishments
