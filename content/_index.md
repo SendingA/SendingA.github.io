@@ -39,20 +39,7 @@ sections:
         gradient_start: '#004ba0'
         text_color_light: true
 
-  - block: markdown
-    id: news
-    content:
-      title: 📰 Latest News & Updates
-      subtitle: 'Stay updated with my recent activities and milestones'
-      text: |-
-        {{< news_month_filter >}}
-    design:
-      columns: '1'
-      background:
-        color: ''
-        text_color_light: false
-      spacing:
-        padding: ['60px', '0', '60px', '0']         
+         
 
   - block: about.biography
     id: about
@@ -110,7 +97,20 @@ sections:
     design:
       columns: '1'
 
-
+  - block: markdown
+    id: news
+    content:
+      title: 📰 Latest News & Updates
+      subtitle: 'Stay updated with my recent activities and milestones'
+      text: |-
+        {{< news_month_filter >}}
+    design:
+      columns: '1'
+      background:
+        color: ''
+        text_color_light: false
+      spacing:
+        padding: ['60px', '0', '60px', '0']
 
 
   # - block: accomplishments
