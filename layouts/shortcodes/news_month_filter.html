@@ -1,52 +1,448 @@
-<!-- Compact News Calendar Widget for Homepage -->
-<div class="homepage-news-filter">
-  <div class="filter-header">
-    <a href="/news" class="btn-view-all-news">
-      <i class="fas fa-calendar-alt me-2"></i>View Full News Archive
-    </a>
+<!-- Homepage News Block with Calendar and Pagination -->
+{{ $newsPages := (where site.RegularPages "Section" "news").ByDate.Reverse }}
+{{ $perPage := 5 }}
+{{ $totalNews := len $newsPages }}
+{{ $totalPages := div (add $totalNews (sub $perPage 1)) $perPage }}
+
+<div class="homepage-news-block">
+  <!-- News List -->
+  <div class="news-list" id="homepage-news-list">
+    {{ range first $perPage $newsPages }}
+    <div class="news-list-item" data-date="{{ .Date.Format "2006-01-02" }}">
+      <div class="news-item-date">
+        <span class="date-day">{{ .Date.Format "02" }}</span>
+        <span class="date-month">{{ .Date.Format "Jan" }}</span>
+        <span class="date-year">{{ .Date.Format "2006" }}</span>
+      </div>
+      <div class="news-item-content">
+        <h4 class="news-item-title">
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </h4>
+        {{ with .Params.summary }}
+        <p class="news-item-summary">{{ . }}</p>
+        {{ end }}
+        {{ with .Params.tags }}
+        <div class="news-item-tags">
+          {{ range . }}
+          <span class="news-tag">{{ . }}</span>
+          {{ end }}
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+  </div>
+
+  <!-- Bottom Bar: Calendar Left + Pagination Right -->
+  <div class="news-bottom-bar">
+    <div class="bottom-left">
+      <a href="/news" class="btn-calendar" title="View Full News Archive">
+        <i class="fas fa-calendar-alt"></i>
+        <span class="btn-text">Archive</span>
+      </a>
+    </div>
+    
+    <div class="bottom-center">
+      <span class="news-info">{{ $totalNews }} news items</span>
+    </div>
+    
+    <div class="bottom-right">
+      {{ if gt $totalPages 1 }}
+      <div class="pagination-controls">
+        <button class="page-btn" id="prev-page" disabled>
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <span class="page-indicator">
+          <span id="current-page">1</span> / {{ $totalPages }}
+        </span>
+        <button class="page-btn" id="next-page">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+      {{ end }}
+    </div>
   </div>
 </div>
 
+<!-- Hidden data for JavaScript pagination -->
+<script type="application/json" id="all-news-data">
+[
+  {{ range $index, $page := $newsPages }}
+  {{ if $index }},{{ end }}
+  {
+    "title": {{ .Title | jsonify }},
+    "url": {{ .RelPermalink | jsonify }},
+    "date": "{{ .Date.Format "2006-01-02" }}",
+    "dateDay": "{{ .Date.Format "02" }}",
+    "dateMonth": "{{ .Date.Format "Jan" }}",
+    "dateYear": "{{ .Date.Format "2006" }}",
+    "summary": {{ with .Params.summary }}{{ . | jsonify }}{{ else }}""{{ end }},
+    "tags": {{ with .Params.tags }}{{ . | jsonify }}{{ else }}[]{{ end }}
+  }
+  {{ end }}
+]
+</script>
+
 <style>
-.homepage-news-filter {
-  margin: 1.5rem 0;
-  padding: 1rem;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
-  border-radius: 12px;
-  border: 1px solid rgba(102, 126, 234, 0.15);
+/* Homepage News Block Styles */
+.homepage-news-block {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  border: 1px solid #e9ecef;
 }
 
-.filter-header {
+/* News List */
+.news-list {
+  padding: 1.5rem;
+  min-height: 300px;
+}
+
+.news-list-item {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  transition: all 0.3s ease;
 }
 
-.btn-view-all-news {
+.news-list-item:first-child {
+  padding-top: 0;
+}
+
+.news-list-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.news-list-item:hover {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.03) 0%, rgba(118, 75, 162, 0.03) 100%);
+  margin: 0 -1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 10px;
+}
+
+/* Date Column */
+.news-item-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+}
+
+.date-day {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.date-month {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin-top: 0.25rem;
+}
+
+.date-year {
+  font-size: 0.65rem;
+  opacity: 0.8;
+  margin-top: 0.125rem;
+}
+
+/* Content Column */
+.news-item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.news-item-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.news-item-title a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.news-item-title a:hover {
+  color: #667eea;
+}
+
+.news-item-summary {
+  margin: 0 0 0.75rem 0;
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.news-item-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.news-tag {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  color: #667eea;
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Bottom Bar */
+.news-bottom-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+  border-top: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+.bottom-left, .bottom-right {
+  flex: 1;
+}
+
+.bottom-center {
+  flex: 1;
+  text-align: center;
+}
+
+.bottom-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Calendar Button */
+.btn-calendar {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 0.75rem 1.75rem;
+  padding: 0.6rem 1rem;
   border-radius: 10px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
+  box-shadow: 0 3px 10px rgba(102, 126, 234, 0.25);
 }
 
-.btn-view-all-news:hover {
+.btn-calendar:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.35);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.35);
   color: white;
 }
 
+.btn-calendar i {
+  font-size: 1rem;
+}
+
+/* News Info */
+.news-info {
+  color: #667eea;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Pagination Controls */
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.page-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: white;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  color: #667eea;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.page-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: #667eea;
+  transform: scale(1.05);
+}
+
+.page-btn:disabled {
+  background: #f8f9fa;
+  color: #ced4da;
+  cursor: not-allowed;
+  border-color: #e9ecef;
+}
+
+.page-indicator {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+  min-width: 50px;
+  text-align: center;
+}
+
+#current-page {
+  color: #667eea;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-  .btn-view-all-news {
-    padding: 0.65rem 1.5rem;
-    font-size: 0.9rem;
+  .news-list-item {
+    flex-direction: column;
+    gap: 1rem;
   }
+  
+  .news-item-date {
+    flex-direction: row;
+    gap: 0.5rem;
+    width: fit-content;
+    padding: 0.5rem 1rem;
+  }
+  
+  .date-day {
+    font-size: 1.25rem;
+  }
+  
+  .date-month, .date-year {
+    margin-top: 0;
+  }
+  
+  .news-bottom-bar {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .bottom-left, .bottom-center, .bottom-right {
+    flex: none;
+  }
+  
+  .bottom-center {
+    order: 3;
+    width: 100%;
+  }
+  
+  .btn-calendar .btn-text {
+    display: none;
+  }
+  
+  .btn-calendar {
+    padding: 0.6rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .news-list {
+    padding: 1rem;
+  }
+  
+  .news-bottom-bar {
+    padding: 1rem;
+  }
+  
+  .news-item-title {
+    font-size: 1rem;
+  }
+  
+  .page-btn {
+    width: 32px;
+    height: 32px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const newsDataEl = document.getElementById('all-news-data');
+  if (!newsDataEl) return;
+  
+  const allNews = JSON.parse(newsDataEl.textContent);
+  const perPage = 5;
+  const totalPages = Math.ceil(allNews.length / perPage);
+  let currentPage = 1;
+  
+  const newsList = document.getElementById('homepage-news-list');
+  const prevBtn = document.getElementById('prev-page');
+  const nextBtn = document.getElementById('next-page');
+  const currentPageSpan = document.getElementById('current-page');
+  
+  if (!newsList || totalPages <= 1) return;
+  
+  function renderPage(page) {
+    const start = (page - 1) * perPage;
+    const end = start + perPage;
+    const pageNews = allNews.slice(start, end);
+    
+    newsList.innerHTML = pageNews.map((news, index) => `
+      <div class="news-list-item" data-date="${news.date}">
+        <div class="news-item-date">
+          <span class="date-day">${news.dateDay}</span>
+          <span class="date-month">${news.dateMonth}</span>
+          <span class="date-year">${news.dateYear}</span>
+        </div>
+        <div class="news-item-content">
+          <h4 class="news-item-title">
+            <a href="${news.url}">${news.title}</a>
+          </h4>
+          ${news.summary ? `<p class="news-item-summary">${news.summary}</p>` : ''}
+          ${news.tags && news.tags.length > 0 ? `
+            <div class="news-item-tags">
+              ${news.tags.map(tag => `<span class="news-tag">${tag}</span>`).join('')}
+            </div>
+          ` : ''}
+        </div>
+      </div>
+    `).join('');
+    
+    // Update pagination
+    currentPageSpan.textContent = page;
+    prevBtn.disabled = page === 1;
+    nextBtn.disabled = page === totalPages;
+    
+    // Scroll to top of news block
+    newsList.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+  
+  prevBtn.addEventListener('click', function() {
+    if (currentPage > 1) {
+      currentPage--;
+      renderPage(currentPage);
+    }
+  });
+  
+  nextBtn.addEventListener('click', function() {
+    if (currentPage < totalPages) {
+      currentPage++;
+      renderPage(currentPage);
+    }
+  });
+});
+</script>
 }
 </style>

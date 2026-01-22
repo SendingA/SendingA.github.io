@@ -97,24 +97,14 @@ sections:
     design:
       columns: '1'
 
-  - block: collection
+  - block: markdown
     id: news
     content:
       title: 📰 Latest News & Updates
       subtitle: 'Stay updated with my recent activities and milestones'
       text: |-
         {{< news_month_filter >}}
-      count: 5
-      filters:
-        folders:
-          - news
-        exclude_featured: false
-        exclude_future: false
-        exclude_past: false
-      offset: 0
-      order: desc
     design:
-      view: compact
       columns: '1'
       background:
         color: ''
