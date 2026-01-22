@@ -55,32 +55,17 @@
         <span class="page-indicator">
           <span id="current-page">1</span> / {{ $totalPages }}
         </span>
-        <button class="page-btn" id="next-page">
+        <button class="page-btn" id="next-page" {{ if le $totalPages 1 }}disabled{{ end }}>
           <i class="fas fa-chevron-right"></i>
         </button>
       </div>
-      {{ end }}
     </div>
   </div>
 </div>
 
 <!-- Hidden data for JavaScript pagination -->
 <script type="application/json" id="all-news-data">
-[
-  {{ range $index, $page := $newsPages }}
-  {{ if $index }},{{ end }}
-  {
-    "title": {{ .Title | jsonify }},
-    "url": {{ .RelPermalink | jsonify }},
-    "date": "{{ .Date.Format "2006-01-02" }}",
-    "dateDay": "{{ .Date.Format "02" }}",
-    "dateMonth": "{{ .Date.Format "Jan" }}",
-    "dateYear": "{{ .Date.Format "2006" }}",
-    "summary": {{ with .Params.summary }}{{ . | jsonify }}{{ else }}""{{ end }},
-    "tags": {{ with .Params.tags }}{{ . | jsonify }}{{ else }}[]{{ end }}
-  }
-  {{ end }}
-]
+[{{ range $index, $page := $newsPages }}{{ if $index }},{{ end }}{"title": {{ .Title | jsonify }}, "url": {{ .RelPermalink | jsonify }}, "date": "{{ .Date.Format "2006-01-02" }}", "dateDay": "{{ .Date.Format "02" }}", "dateMonth": "{{ .Date.Format "Jan" }}", "dateYear": "{{ .Date.Format "2006" }}", "summary": {{ with .Params.summary }}{{ . | jsonify }}{{ else }}""{{ end }}, "tags": {{ with .Params.tags }}{{ . | jsonify }}{{ else }}[]{{ end }}}{{ end }}]
 </script>
 
 <style>
