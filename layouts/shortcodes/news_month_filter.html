@@ -4,7 +4,7 @@
 {{ $totalNews := len $newsPages }}
 {{ $totalPages := div (add $totalNews (sub $perPage 1)) $perPage }}
 
-<div class="homepage-news-block">
+<div class="homepage-news-block" id="news-block-container">
   <!-- News List -->
   <div class="news-list" id="homepage-news-list">
     {{ range first $perPage $newsPages }}
@@ -48,13 +48,13 @@
     
     <div class="bottom-right">
       <div class="pagination-controls">
-        <button class="page-btn" id="prev-page" disabled>
+        <button type="button" class="page-btn news-prev-btn" disabled onclick="newsPagination.prev()">
           <i class="fas fa-chevron-left"></i>
         </button>
         <span class="page-indicator">
-          <span id="current-page">1</span> / {{ $totalPages }}
+          <span class="news-current-page">1</span> / <span class="news-total-pages">{{ $totalPages }}</span>
         </span>
-        <button class="page-btn" id="next-page" {{ if le $totalPages 1 }}disabled{{ end }}>
+        <button type="button" class="page-btn news-next-btn" onclick="newsPagination.next()">
           <i class="fas fa-chevron-right"></i>
         </button>
       </div>
@@ -63,7 +63,7 @@
 </div>
 
 <!-- Hidden data for JavaScript pagination -->
-<script type="application/json" id="all-news-data">
+<script id="all-news-data" type="application/json">
 [{{ range $index, $page := $newsPages }}{{ if $index }},{{ end }}{"title": {{ .Title | jsonify }}, "url": {{ .RelPermalink | jsonify }}, "date": "{{ .Date.Format "2006-01-02" }}", "dateDay": "{{ .Date.Format "02" }}", "dateMonth": "{{ .Date.Format "Jan" }}", "dateYear": "{{ .Date.Format "2006" }}", "summary": {{ with .Params.summary }}{{ . | jsonify }}{{ else }}""{{ end }}, "tags": {{ with .Params.tags }}{{ . | jsonify }}{{ else }}[]{{ end }}}{{ end }}]
 </script>
 
@@ -292,7 +292,7 @@
   text-align: center;
 }
 
-#current-page {
+.news-current-page {
   color: #667eea;
 }
 
@@ -362,72 +362,105 @@
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const newsDataEl = document.getElementById('all-news-data');
-  if (!newsDataEl) return;
+// Global pagination object
+var newsPagination = (function() {
+  var allNews = [];
+  var currentPage = 1;
+  var perPage = 5;
+  var totalPages = 1;
   
-  const allNews = JSON.parse(newsDataEl.textContent);
-  const perPage = 5;
-  const totalPages = Math.ceil(allNews.length / perPage);
-  let currentPage = 1;
-  
-  const newsList = document.getElementById('homepage-news-list');
-  const prevBtn = document.getElementById('prev-page');
-  const nextBtn = document.getElementById('next-page');
-  const currentPageSpan = document.getElementById('current-page');
-  
-  if (!newsList) return;
-  if (!prevBtn || !nextBtn) return;
-  
-  function renderPage(page) {
-    const start = (page - 1) * perPage;
-    const end = start + perPage;
-    const pageNews = allNews.slice(start, end);
-    
-    newsList.innerHTML = pageNews.map((news, index) => `
-      <div class="news-list-item" data-date="${news.date}">
-        <div class="news-item-date">
-          <span class="date-day">${news.dateDay}</span>
-          <span class="date-month">${news.dateMonth}</span>
-          <span class="date-year">${news.dateYear}</span>
-        </div>
-        <div class="news-item-content">
-          <h4 class="news-item-title">
-            <a href="${news.url}">${news.title}</a>
-          </h4>
-          ${news.summary ? `<p class="news-item-summary">${news.summary}</p>` : ''}
-          ${news.tags && news.tags.length > 0 ? `
-            <div class="news-item-tags">
-              ${news.tags.map(tag => `<span class="news-tag">${tag}</span>`).join('')}
-            </div>
-          ` : ''}
-        </div>
-      </div>
-    `).join('');
-    
-    // Update pagination
-    currentPageSpan.textContent = page;
-    prevBtn.disabled = page === 1;
-    nextBtn.disabled = page === totalPages;
-    
-    // Scroll to top of news block
-    newsList.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  // Initialize
+  function init() {
+    var dataEl = document.getElementById('all-news-data');
+    if (dataEl) {
+      try {
+        allNews = JSON.parse(dataEl.textContent);
+        totalPages = Math.ceil(allNews.length / perPage);
+      } catch(e) {
+        console.error('Failed to parse news data:', e);
+      }
+    }
+    updateButtons();
   }
   
-  prevBtn.addEventListener('click', function(e) {
-    e.preventDefault();
+  function renderPage(page) {
+    var newsList = document.getElementById('homepage-news-list');
+    if (!newsList) return;
+    
+    var start = (page - 1) * perPage;
+    var end = start + perPage;
+    var pageNews = allNews.slice(start, end);
+    
+    var html = '';
+    for (var i = 0; i < pageNews.length; i++) {
+      var news = pageNews[i];
+      html += '<div class="news-list-item" data-date="' + news.date + '">';
+      html += '<div class="news-item-date">';
+      html += '<span class="date-day">' + news.dateDay + '</span>';
+      html += '<span class="date-month">' + news.dateMonth + '</span>';
+      html += '<span class="date-year">' + news.dateYear + '</span>';
+      html += '</div>';
+      html += '<div class="news-item-content">';
+      html += '<h4 class="news-item-title"><a href="' + news.url + '">' + news.title + '</a></h4>';
+      if (news.summary) {
+        html += '<p class="news-item-summary">' + news.summary + '</p>';
+      }
+      if (news.tags && news.tags.length > 0) {
+        html += '<div class="news-item-tags">';
+        for (var j = 0; j < news.tags.length; j++) {
+          html += '<span class="news-tag">' + news.tags[j] + '</span>';
+        }
+        html += '</div>';
+      }
+      html += '</div></div>';
+    }
+    
+    newsList.innerHTML = html;
+    updateButtons();
+    
+    // Scroll to news block
+    var newsBlock = document.getElementById('news-block-container');
+    if (newsBlock) {
+      newsBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+  
+  function updateButtons() {
+    var prevBtn = document.querySelector('.news-prev-btn');
+    var nextBtn = document.querySelector('.news-next-btn');
+    var currentPageEl = document.querySelector('.news-current-page');
+    
+    if (prevBtn) prevBtn.disabled = (currentPage <= 1);
+    if (nextBtn) nextBtn.disabled = (currentPage >= totalPages);
+    if (currentPageEl) currentPageEl.textContent = currentPage;
+  }
+  
+  function prev() {
     if (currentPage > 1) {
       currentPage--;
       renderPage(currentPage);
     }
-  });
+    return false;
+  }
   
-  nextBtn.addEventListener('click', function(e) {
-    e.preventDefault();
+  function next() {
     if (currentPage < totalPages) {
       currentPage++;
       renderPage(currentPage);
     }
-  });
-});
+    return false;
+  }
+  
+  // Initialize on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+  
+  return {
+    prev: prev,
+    next: next
+  };
+})();
 </script>
