@@ -8,7 +8,7 @@
   <!-- 2x2 Grid Layout for Pinned Projects -->
   <div class="projects-grid">
     {{ range $index, $project := $pinnedProjects }}
-    <div class="project-card">
+    <div class="project-card {{ if and (eq $index 3) (gt $totalProjects $pinnedCount) }}has-explore-btn{{ end }}">
       <a href="{{ $project.RelPermalink }}" class="project-link">
         <div class="project-image">
           {{ $image := $project.Resources.GetMatch "featured*" }}
@@ -37,19 +37,16 @@
           {{ end }}
         </div>
       </a>
+      <!-- Floating Explore Button on 4th card -->
+      {{ if and (eq $index 3) (gt $totalProjects $pinnedCount) }}
+      <a href="/project" class="floating-explore-btn">
+        <span>More</span>
+        <i class="fas fa-arrow-right"></i>
+      </a>
+      {{ end }}
     </div>
     {{ end }}
   </div>
-
-  <!-- Read More Button -->
-  {{ if gt $totalProjects $pinnedCount }}
-  <div class="projects-read-more">
-    <a href="/project" class="btn-read-more">
-      <span>Explore All {{ $totalProjects }} Projects</span>
-      <i class="fas fa-arrow-right"></i>
-    </a>
-  </div>
-  {{ end }}
 </div>
 
 <style>
@@ -213,38 +210,42 @@
   letter-spacing: 0.5px;
 }
 
-/* Read More Button */
-.projects-read-more {
-  text-align: center;
-  padding-top: 1rem;
+/* Floating Explore Button on 4th Card */
+.has-explore-btn {
+  position: relative;
 }
 
-.btn-read-more {
+.floating-explore-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.4rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 1rem 2rem;
-  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.8rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  z-index: 10;
 }
 
-.btn-read-more:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+.floating-explore-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 18px rgba(102, 126, 234, 0.5);
   color: white;
 }
 
-.btn-read-more i {
+.floating-explore-btn i {
+  font-size: 0.7rem;
   transition: transform 0.3s ease;
 }
 
-.btn-read-more:hover i {
-  transform: translateX(5px);
+.floating-explore-btn:hover i {
+  transform: translateX(3px);
 }
 </style>
