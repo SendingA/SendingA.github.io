@@ -38,8 +38,7 @@ sections:
         gradient_end: '#1976d2'
         gradient_start: '#004ba0'
         text_color_light: true
-
-         
+  
 
   - block: about.biography
     id: about
@@ -47,6 +46,22 @@ sections:
       title: Biography
       # Choose a user profile to display (a folder name within `content/authors/`)
       username: admin
+
+  - block: markdown
+    id: news
+    content:
+      title: 📰 Latest News & Updates
+      subtitle: 'Stay updated with my recent activities and milestones'
+      text: |-
+        {{< news_month_filter >}}
+    design:
+      columns: '1'
+      background:
+        color: ''
+        text_color_light: false
+      spacing:
+        padding: ['60px', '0', '60px', '0']       
+              
   - block: skills
     content:
       title: Skill Set
@@ -97,20 +112,7 @@ sections:
     design:
       columns: '1'
 
-  - block: markdown
-    id: news
-    content:
-      title: 📰 Latest News & Updates
-      subtitle: 'Stay updated with my recent activities and milestones'
-      text: |-
-        {{< news_month_filter >}}
-    design:
-      columns: '1'
-      background:
-        color: ''
-        text_color_light: false
-      spacing:
-        padding: ['60px', '0', '60px', '0']
+
 
 
   # - block: accomplishments
