@@ -1,9 +1,11 @@
 ---
-title: "🎓 Graduated as SUSTech Outstanding Graduate"
+title: 🎓 Graduated as SUSTech Outstanding Graduate
 date: 2025-07-02
 summary: Proudly graduated from SUSTech with the University Outstanding Graduate honor.
 authors: [admin]
-tags: [Milestone, Graduation]
+tags:
+  - Milestone
+  - Graduation
 ---
 
 Today marks the end of an incredible chapter! I am proud to have graduated from **Southern University of Science and Technology (SUSTech)** as a **University Outstanding Graduate**. 

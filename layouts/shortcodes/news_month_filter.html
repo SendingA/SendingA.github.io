@@ -64,7 +64,7 @@
 
 <!-- Hidden data for JavaScript pagination -->
 <script id="all-news-data" type="application/json">
-[{{ range $index, $page := $newsPages }}{{ if $index }},{{ end }}{"title": {{ .Title | jsonify }}, "url": {{ .RelPermalink | jsonify }}, "date": "{{ .Date.Format "2006-01-02" }}", "dateDay": "{{ .Date.Format "02" }}", "dateMonth": "{{ .Date.Format "Jan" }}", "dateYear": "{{ .Date.Format "2006" }}", "summary": {{ with .Params.summary }}{{ . | jsonify }}{{ else }}""{{ end }}, "tags": {{ with .Params.tags }}{{ . | jsonify }}{{ else }}[]{{ end }}}{{ end }}]
+[{{ range $index, $page := $newsPages }}{{ if $index }},{{ end }}{"title": "{{ .Title | safeJS }}", "url": "{{ .RelPermalink }}", "date": "{{ .Date.Format "2006-01-02" }}", "dateDay": "{{ .Date.Format "02" }}", "dateMonth": "{{ .Date.Format "Jan" }}", "dateYear": "{{ .Date.Format "2006" }}", "summary": "{{ with .Params.summary }}{{ . | safeJS }}{{ end }}", "tags": [{{ with .Params.tags }}{{ range $i, $tag := . }}{{ if $i }},{{ end }}"{{ $tag }}"{{ end }}{{ end }}]}{{ end }}]
 </script>
 
 <style>
