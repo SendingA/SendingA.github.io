@@ -376,7 +376,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const nextBtn = document.getElementById('next-page');
   const currentPageSpan = document.getElementById('current-page');
   
-  if (!newsList || totalPages <= 1) return;
+  if (!newsList) return;
+  if (!prevBtn || !nextBtn) return;
   
   function renderPage(page) {
     const start = (page - 1) * perPage;
@@ -413,14 +414,16 @@ document.addEventListener('DOMContentLoaded', function() {
     newsList.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
   
-  prevBtn.addEventListener('click', function() {
+  prevBtn.addEventListener('click', function(e) {
+    e.preventDefault();
     if (currentPage > 1) {
       currentPage--;
       renderPage(currentPage);
     }
   });
   
-  nextBtn.addEventListener('click', function() {
+  nextBtn.addEventListener('click', function(e) {
+    e.preventDefault();
     if (currentPage < totalPages) {
       currentPage++;
       renderPage(currentPage);
@@ -428,4 +431,3 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
-</style>
