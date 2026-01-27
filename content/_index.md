@@ -233,16 +233,16 @@ sections:
         padding: ['60px', '0', '60px', '0']
   
   - block: markdown
-  id: skills
-  content:
-    title: Skill Set
-    subtitle: ''
-    text: |-
-      {{< skills_display >}}
-  design:
-    columns: '1'
-    spacing:
-      padding: ['60px', '0', '60px', '0']
+    id: skills
+    content:
+      title: Skill Set
+      subtitle: ''
+      text: |-
+        {{< skills_display >}}
+    design:
+      columns: '1'
+      spacing:
+        padding: ['60px', '0', '60px', '0']
   
   - block: markdown
     content:
