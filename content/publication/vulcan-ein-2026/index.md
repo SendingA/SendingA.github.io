@@ -3,11 +3,13 @@ title: 'VULCAN: Vision-Language-Model Enhanced Multi-Agent Cooperative Navigatio
 
 # Authors
 authors:
-  - admin
+  - Shengding Liu
+  - Qiben Yan
 
 # Author notes (optional)
 author_notes:
-  - 'First Author'
+  - "First Author"
+  - ""
 
 date: '2026-02-11T00:00:00Z'
 doi: ''
@@ -20,7 +22,7 @@ publication_types: ['paper-conference']
 
 # Publication name and optional abbreviated publication name.
 publication: In *IEEE INFOCOM 2026 Workshop on Embodied Intelligence Networks (EIN)*
-publication_short: In *INFOCOM EIN 2026*
+publication_short: In INFOCOM EIN 2026(CCF-A)
 
 abstract: This paper presents VULCAN, a Vision-Language-Model enhanced framework for multi-agent cooperative navigation in indoor fire-disaster response scenarios. By integrating state-of-the-art vision-language models with multi-agent coordination mechanisms, VULCAN enables efficient and adaptive navigation strategies for emergency response robots operating in complex and hazardous environments.
 

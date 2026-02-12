@@ -8,7 +8,7 @@ authors:
 - Jin Zhang
 author_notes:
 - ""
-- "**the Second Author**"
+- "Second Author"
 - ""
 - ""
 - ""
