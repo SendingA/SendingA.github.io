@@ -9,11 +9,11 @@ authors:
 author_notes:
   - 'First Author'
 
-date: '2026-02-12T00:00:00Z'
+date: '2026-02-11T00:00:00Z'
 doi: ''
 
 # Schedule page publish date (NOT publication's date).
-publishDate: '2026-02-12T00:00:00Z'
+publishDate: '2026-02-11T00:00:00Z'
 
 # Publication type.
 publication_types: ['paper-conference']
