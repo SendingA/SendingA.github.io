@@ -65,6 +65,7 @@ sections:
   - block: experience
     content:
       title: Experience
+      subtitle: 'My academic and research journey'
       # Date format for experience
       #   Refer to https://docs.hugoblox.com/customization/#date-format
       date_format: September 2024
@@ -234,7 +235,7 @@ sections:
     id: skills
     content:
       title: Skill Set
-      subtitle: ''
+      subtitle: 'Technical skills and expertise'
       text: |-
         {{< skills_display >}}
     design:
@@ -253,17 +254,17 @@ sections:
       spacing:
         padding: ['60px', '0', '60px', '0']
 
-  - block: markdown
-    id: friends
-    content:
-      title: 🌍 Friends & Visitors
-      subtitle: 'Connections from around the world'
-      text: |-
-        {{< friends_preview >}}
-    design:
-      columns: '1'
-      spacing:
-        padding: ['60px', '0', '60px', '0']
+  # - block: markdown
+  #   id: friends
+  #   content:
+  #     title: 🌍 Friends & Visitors
+  #     subtitle: 'Connections from around the world'
+  #     text: |-
+  #       {{< friends_preview >}}
+  #   design:
+  #     columns: '1'
+  #     spacing:
+  #       padding: ['60px', '0', '60px', '0']
         
   - block: contact
     id: contact
