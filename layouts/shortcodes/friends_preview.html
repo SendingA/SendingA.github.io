@@ -2,30 +2,29 @@
 {{ $friends := site.Data.friends.friends }}
 
 <div class="friends-preview">
-  <!-- World Map with Markers -->
+  <!-- World Map with Markers and Stats Overlay -->
   <div class="friends-map-container">
     <div id="friends-map-preview"></div>
-  </div>
-
-  <!-- Statistics Bar -->
-  <div class="friends-stats-mini">
-    <span class="stat-item">
-      <i class="fas fa-users"></i>
-      <strong>{{ len $friends }}</strong> Friends
-    </span>
-    <span class="stat-divider">|</span>
-    <span class="stat-item">
-      <i class="fas fa-globe"></i>
-      <strong>
-        {{ $countries := slice }}
-        {{ range $friends }}
-          {{ if .approved }}
-            {{ $countries = $countries | append .location.country }}
+    <!-- Statistics Overlay on Map -->
+    <div class="friends-stats-overlay">
+      <span class="stat-item">
+        <i class="fas fa-users"></i>
+        <strong>{{ len $friends }}</strong> Friends
+      </span>
+      <span class="stat-divider">|</span>
+      <span class="stat-item">
+        <i class="fas fa-globe"></i>
+        <strong>
+          {{ $countries := slice }}
+          {{ range $friends }}
+            {{ if .approved }}
+              {{ $countries = $countries | append .location.country }}
+            {{ end }}
           {{ end }}
-        {{ end }}
-        {{ len ($countries | uniq) }}
-      </strong> Countries
-    </span>
+          {{ len ($countries | uniq) }}
+        </strong> Countries
+      </span>
+    </div>
   </div>
 
   <!-- Call to Action Buttons -->
@@ -53,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize the map
   const map = L.map('friends-map-preview', {
     center: [20, 0],
-    zoom: 2,
+    zoom: 1,
     minZoom: 1,
     maxZoom: 18,
     scrollWheelZoom: false
@@ -106,11 +105,8 @@ document.addEventListener('DOMContentLoaded', function() {
     markers.push(marker);
   });
 
-  // Fit bounds
-  if (markers.length > 0) {
-    const group = new L.featureGroup(markers);
-    map.fitBounds(group.getBounds().pad(0.1));
-  }
+  // Keep map at minimum zoom to show world view
+  map.setView([20, 0], 1);
 });
 </script>
 
@@ -129,11 +125,44 @@ document.addEventListener('DOMContentLoaded', function() {
   overflow: hidden;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
   margin-bottom: 1.5rem;
+  position: relative;
 }
 
 #friends-map-preview {
   width: 100%;
   height: 100%;
+}
+
+/* Statistics Overlay on Map */
+.friends-stats-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+  color: white;
+  font-size: 1rem;
+  z-index: 1000;
+  border-radius: 16px 16px 0 0;
+}
+
+.friends-stats-overlay .stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.friends-stats-overlay .stat-item i {
+  opacity: 0.9;
+}
+
+.friends-stats-overlay .stat-divider {
+  opacity: 0.5;
 }
 
 /* Custom Marker */
@@ -180,40 +209,11 @@ document.addEventListener('DOMContentLoaded', function() {
   text-decoration: underline;
 }
 
-/* Statistics Mini Bar */
-.friends-stats-mini {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 12px;
-  color: white;
-  margin-bottom: 1.5rem;
-  font-size: 1rem;
-}
-
-.friends-stats-mini .stat-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.friends-stats-mini .stat-item i {
-  opacity: 0.9;
-}
-
-.friends-stats-mini .stat-divider {
-  opacity: 0.5;
-}
-
 /* CTA Buttons */
 .friends-cta-buttons {
   display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .friends-cta-buttons a {
@@ -264,14 +264,15 @@ document.addEventListener('DOMContentLoaded', function() {
     height: 300px;
   }
   
-  .friends-stats-mini {
-    font-size: 0.9rem;
-    gap: 0.75rem;
+  .friends-stats-overlay {
+    font-size: 0.85rem;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
   }
   
   .friends-cta-buttons {
     flex-direction: column;
-    align-items: stretch;
+    gap: 0.75rem;
   }
   
   .friends-cta-buttons a {
