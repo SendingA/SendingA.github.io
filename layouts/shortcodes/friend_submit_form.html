@@ -1,0 +1,310 @@
+<!-- Friend Submission Form Shortcode -->
+<div id="friend-submit-form" class="friend-form-container">
+  <div class="form-header">
+    <h3><i class="fas fa-user-plus"></i> Join the Friends Map</h3>
+    <p>Fill out the form below to be featured on my friends map. Your submission will be reviewed before being displayed.</p>
+  </div>
+  
+  <form name="friend-submission" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="friend-form">
+    <input type="hidden" name="form-name" value="friend-submission" />
+    
+    <!-- Honeypot field for spam protection -->
+    <p class="hidden" style="display:none;">
+      <label>Don't fill this out: <input name="bot-field" /></label>
+    </p>
+    
+    <div class="form-row">
+      <div class="form-group">
+        <label for="friend-name">
+          <i class="fas fa-user"></i> Your Name *
+        </label>
+        <input type="text" id="friend-name" name="name" required placeholder="John Doe" />
+      </div>
+      
+      <div class="form-group">
+        <label for="friend-affiliation">
+          <i class="fas fa-building"></i> Affiliation *
+        </label>
+        <input type="text" id="friend-affiliation" name="affiliation" required placeholder="University / Company" />
+      </div>
+    </div>
+    
+    <div class="form-row">
+      <div class="form-group">
+        <label for="friend-city">
+          <i class="fas fa-city"></i> City *
+        </label>
+        <input type="text" id="friend-city" name="city" required placeholder="New York" />
+      </div>
+      
+      <div class="form-group">
+        <label for="friend-country">
+          <i class="fas fa-globe"></i> Country *
+        </label>
+        <input type="text" id="friend-country" name="country" required placeholder="USA" />
+      </div>
+    </div>
+    
+    <div class="form-group full-width">
+      <label for="friend-website">
+        <i class="fas fa-link"></i> Personal Website / Homepage
+      </label>
+      <input type="url" id="friend-website" name="website" placeholder="https://yourwebsite.com" />
+    </div>
+    
+    <div class="form-group full-width">
+      <label for="friend-email">
+        <i class="fas fa-envelope"></i> Email Address *
+      </label>
+      <input type="email" id="friend-email" name="email" required placeholder="your@email.com" />
+      <small>For verification purposes only. Will not be displayed publicly.</small>
+    </div>
+    
+    <div class="form-group full-width">
+      <label for="friend-message">
+        <i class="fas fa-comment"></i> Leave a Message
+      </label>
+      <textarea id="friend-message" name="message" rows="3" placeholder="Say hello or leave a nice message! (max 200 characters)" maxlength="200"></textarea>
+      <small class="char-count"><span id="message-count">0</span>/200</small>
+    </div>
+    
+    <div class="form-group full-width checkbox-group">
+      <label class="checkbox-label">
+        <input type="checkbox" name="consent" required />
+        <span class="checkmark"></span>
+        I agree to have my name, affiliation, location, and message displayed publicly on this website.
+      </label>
+    </div>
+    
+    <button type="submit" class="submit-button">
+      <i class="fas fa-paper-plane"></i> Submit Application
+    </button>
+  </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const messageInput = document.getElementById('friend-message');
+  const charCount = document.getElementById('message-count');
+  
+  if (messageInput && charCount) {
+    messageInput.addEventListener('input', function() {
+      charCount.textContent = this.value.length;
+    });
+  }
+  
+  // Form submission feedback
+  const form = document.querySelector('.friend-form');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      const button = form.querySelector('.submit-button');
+      button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+      button.disabled = true;
+    });
+  }
+});
+</script>
+
+<style>
+/* Friend Form Styles */
+.friend-form-container {
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form-header h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0 0 0.5rem 0;
+}
+
+.form-header h3 i {
+  color: #667eea;
+  margin-right: 0.5rem;
+}
+
+.form-header p {
+  color: #666;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.friend-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full-width {
+  width: 100%;
+  flex: none;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.form-group label i {
+  color: #667eea;
+  margin-right: 0.4rem;
+  width: 16px;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.75rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #aaa;
+}
+
+.form-group small {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 0.3rem;
+}
+
+.char-count {
+  text-align: right;
+}
+
+/* Checkbox Styling */
+.checkbox-group {
+  margin-top: 0.5rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #667eea;
+}
+
+/* Submit Button */
+.submit-button {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+.submit-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Dark Mode */
+.dark .friend-form-container {
+  background: #1a1a2e;
+}
+
+.dark .form-header h3 {
+  color: #eee;
+}
+
+.dark .form-header p {
+  color: #aaa;
+}
+
+.dark .form-group label {
+  color: #ddd;
+}
+
+.dark .form-group input,
+.dark .form-group textarea {
+  background: #0d0d1a;
+  border-color: #2a2a4e;
+  color: #eee;
+}
+
+.dark .form-group input:focus,
+.dark .form-group textarea:focus {
+  border-color: #667eea;
+}
+
+.dark .form-group small {
+  color: #888;
+}
+
+.dark .checkbox-label {
+  color: #bbb;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+  }
+  
+  .friend-form-container {
+    padding: 1.5rem;
+    margin: 2rem 1rem;
+  }
+}
+</style>

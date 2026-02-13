@@ -1,0 +1,448 @@
+<!-- Friends Map Display Shortcode -->
+{{ $friends := site.Data.friends.friends }}
+
+<div class="friends-module">
+  <!-- World Map with Markers -->
+  <div class="friends-map-container">
+    <div id="friends-map"></div>
+  </div>
+
+  <!-- Statistics -->
+  <div class="friends-stats">
+    <div class="stat-item">
+      <span class="stat-number">{{ len $friends }}</span>
+      <span class="stat-label">Friends & Visitors</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">
+        {{ $countries := slice }}
+        {{ range $friends }}
+          {{ if .approved }}
+            {{ $countries = $countries | append .location.country }}
+          {{ end }}
+        {{ end }}
+        {{ len ($countries | uniq) }}
+      </span>
+      <span class="stat-label">Countries</span>
+    </div>
+  </div>
+
+  <!-- Friends List -->
+  <div class="friends-list">
+    {{ range $friends }}
+    {{ if .approved }}
+    <div class="friend-card" data-lat="{{ .location.lat }}" data-lng="{{ .location.lng }}">
+      <div class="friend-header">
+        <div class="friend-avatar">
+          {{ $initial := substr .name 0 1 }}
+          <span>{{ $initial }}</span>
+        </div>
+        <div class="friend-info">
+          {{ if .website }}
+          <a href="{{ .website }}" target="_blank" rel="noopener noreferrer" class="friend-name">
+            {{ .name }} <i class="fas fa-external-link-alt"></i>
+          </a>
+          {{ else }}
+          <span class="friend-name">{{ .name }}</span>
+          {{ end }}
+          <span class="friend-affiliation">{{ .affiliation }}</span>
+          <span class="friend-location">
+            <i class="fas fa-map-marker-alt"></i> {{ .location.city }}, {{ .location.country }}
+          </span>
+        </div>
+      </div>
+      {{ if .message }}
+      <div class="friend-message">
+        <i class="fas fa-quote-left"></i>
+        <p>{{ .message }}</p>
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+    {{ end }}
+  </div>
+
+  <!-- Call to Action -->
+  <div class="friends-cta">
+    <p>Want to be featured here? Submit your information!</p>
+    <a href="#friend-submit-form" class="cta-button">
+      <i class="fas fa-user-plus"></i> Join the Map
+    </a>
+  </div>
+</div>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize the map
+  const map = L.map('friends-map', {
+    center: [20, 0],
+    zoom: 2,
+    minZoom: 1,
+    maxZoom: 18,
+    scrollWheelZoom: false
+  });
+
+  // Add tile layer (OpenStreetMap)
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  // Custom marker icon
+  const customIcon = L.divIcon({
+    className: 'custom-marker',
+    html: '<div class="marker-pin"></div>',
+    iconSize: [30, 42],
+    iconAnchor: [15, 42],
+    popupAnchor: [0, -42]
+  });
+
+  // Friends data from Hugo
+  const friendsData = [
+    {{ range $friends }}
+    {{ if .approved }}
+    {
+      name: "{{ .name }}",
+      affiliation: "{{ .affiliation }}",
+      city: "{{ .location.city }}",
+      country: "{{ .location.country }}",
+      lat: {{ .location.lat }},
+      lng: {{ .location.lng }},
+      website: "{{ .website }}",
+      message: "{{ .message | htmlEscape }}"
+    },
+    {{ end }}
+    {{ end }}
+  ];
+
+  // Add markers to map
+  const markers = [];
+  friendsData.forEach(friend => {
+    const popupContent = `
+      <div class="map-popup">
+        <strong>${friend.website ? `<a href="${friend.website}" target="_blank">${friend.name}</a>` : friend.name}</strong>
+        <br><small>${friend.affiliation}</small>
+        <br><i class="fas fa-map-marker-alt"></i> ${friend.city}, ${friend.country}
+        ${friend.message ? `<br><em>"${friend.message}"</em>` : ''}
+      </div>
+    `;
+    
+    const marker = L.marker([friend.lat, friend.lng], { icon: customIcon })
+      .bindPopup(popupContent)
+      .addTo(map);
+    
+    markers.push(marker);
+  });
+
+  // Fit bounds to show all markers
+  if (markers.length > 0) {
+    const group = new L.featureGroup(markers);
+    map.fitBounds(group.getBounds().pad(0.1));
+  }
+
+  // Card hover interaction
+  document.querySelectorAll('.friend-card').forEach((card, index) => {
+    card.addEventListener('mouseenter', () => {
+      if (markers[index]) {
+        markers[index].openPopup();
+        map.setView([friendsData[index].lat, friendsData[index].lng], 5);
+      }
+    });
+  });
+});
+</script>
+
+<style>
+/* Friends Module Styles */
+.friends-module {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+/* Map Container */
+.friends-map-container {
+  width: 100%;
+  height: 450px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  margin-bottom: 2rem;
+}
+
+#friends-map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Custom Marker */
+.custom-marker {
+  background: transparent;
+  border: none;
+}
+
+.marker-pin {
+  width: 24px;
+  height: 24px;
+  border-radius: 50% 50% 50% 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 50%;
+  top: 50%;
+  margin: -15px 0 0 -12px;
+  box-shadow: 0 3px 10px rgba(102, 126, 234, 0.4);
+}
+
+.marker-pin::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  margin: 7px 0 0 7px;
+  background: #fff;
+  position: absolute;
+  border-radius: 50%;
+}
+
+/* Map Popup */
+.map-popup {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.map-popup a {
+  color: #667eea;
+  text-decoration: none;
+}
+
+.map-popup a:hover {
+  text-decoration: underline;
+}
+
+/* Statistics */
+.friends-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  color: white;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Friends List */
+.friends-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.friend-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.friend-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.2);
+  border-color: #667eea;
+}
+
+.friend-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.friend-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.friend-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.friend-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  text-decoration: none;
+}
+
+a.friend-name:hover {
+  color: #667eea;
+}
+
+.friend-name i {
+  font-size: 0.8rem;
+  margin-left: 0.3rem;
+  opacity: 0.7;
+}
+
+.friend-affiliation {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.friend-location {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.friend-location i {
+  color: #667eea;
+  margin-right: 0.3rem;
+}
+
+.friend-message {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+  position: relative;
+}
+
+.friend-message i {
+  color: #667eea;
+  opacity: 0.3;
+  font-size: 1.2rem;
+  position: absolute;
+  top: 1rem;
+  left: 0;
+}
+
+.friend-message p {
+  margin: 0;
+  padding-left: 1.8rem;
+  font-style: italic;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Call to Action */
+.friends-cta {
+  text-align: center;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.friends-cta p {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+  color: white;
+}
+
+/* Dark Mode Support */
+.dark .friend-card {
+  background: #1a1a2e;
+  border-color: #2a2a4e;
+}
+
+.dark .friend-card:hover {
+  border-color: #667eea;
+}
+
+.dark .friend-name {
+  color: #eee;
+}
+
+.dark .friend-affiliation {
+  color: #aaa;
+}
+
+.dark .friend-location {
+  color: #888;
+}
+
+.dark .friend-message {
+  border-top-color: #2a2a4e;
+}
+
+.dark .friend-message p {
+  color: #bbb;
+}
+
+.dark .friends-cta {
+  background: #1a1a2e;
+}
+
+.dark .friends-cta p {
+  color: #aaa;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .friends-map-container {
+    height: 300px;
+  }
+  
+  .friends-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .friends-stats {
+    gap: 2rem;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+  }
+}
+</style>

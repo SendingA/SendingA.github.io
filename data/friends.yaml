@@ -1,0 +1,27 @@
+# Friends & Visitors Data
+# Each entry contains: name, affiliation, location (city, country, lat, lng), website, message, date_added
+
+friends:
+  - name: "Example Friend"
+    affiliation: "Example University"
+    location:
+      city: "New York"
+      country: "USA"
+      lat: 40.7128
+      lng: -74.0060
+    website: "https://example.com"
+    message: "Great website! Keep up the good work!"
+    date_added: "2026-02-13"
+    approved: true
+
+  - name: "Demo Visitor"
+    affiliation: "Tech Company"
+    location:
+      city: "San Francisco"
+      country: "USA"
+      lat: 37.7749
+      lng: -122.4194
+    website: "https://demo.com"
+    message: "Nice to connect with you!"
+    date_added: "2026-02-12"
+    approved: true
