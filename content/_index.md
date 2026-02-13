@@ -256,10 +256,10 @@ sections:
   - block: markdown
     id: friends
     content:
-      title: 🌍 Visitor Footprints
-      subtitle: 'See where our visitors come from around the world'
+      title: 🌍 Friends & Visitors
+      subtitle: 'Connections from around the world'
       text: |-
-        {{< visitor_map >}}
+        {{< friends_preview >}}
     design:
       columns: '1'
       spacing:
