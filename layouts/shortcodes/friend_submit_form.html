@@ -1,22 +1,18 @@
-<!-- Friend Submission Form Shortcode -->
+<!-- Friend Submission Form Shortcode - Formspree Version -->
 <div id="friend-submit-form" class="friend-form-container">
   <div class="form-header">
     <h3><i class="fas fa-user-plus"></i> Join the Friends Map</h3>
     <p>Fill out the form below to be featured on my friends map. Your submission will be reviewed before being displayed.</p>
   </div>
   
-  <!-- Using Formspree for form handling on GitHub Pages -->
-  <!-- Replace YOUR_FORM_ID with your Formspree form ID after creating one at https://formspree.io -->
-  <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="friend-form">
+  <!-- Using Formspree for form handling -->
+  <form action="https://formspree.io/f/mwvnldjo" method="POST" class="friend-form">
     
     <!-- Honeypot field for spam protection -->
     <input type="text" name="_gotcha" style="display:none;" />
     
-    <!-- Redirect after submission -->
-    <input type="hidden" name="_next" value="{{ .Site.BaseURL }}friends/?submitted=true" />
-    
     <!-- Subject line for email -->
-    <input type="hidden" name="_subject" value="New Friend Map Submission!" />
+    <input type="hidden" name="_subject" value="🌍 New Friend Map Submission!" />
     
     <div class="form-row">
       <div class="form-group">
@@ -59,7 +55,7 @@
     
     <div class="form-group full-width">
       <label for="friend-email">
-        <i class="fas fa-envelope"></i> Email Address *
+        <i class="fas fa-envelope"></i> Your Email Address *
       </label>
       <input type="email" id="friend-email" name="email" required placeholder="your@email.com" />
       <small>For verification purposes only. Will not be displayed publicly.</small>
@@ -75,7 +71,7 @@
     
     <div class="form-group full-width checkbox-group">
       <label class="checkbox-label">
-        <input type="checkbox" name="consent" required />
+        <input type="checkbox" id="friend-consent" name="consent" required />
         <span class="checkmark"></span>
         I agree to have my name, affiliation, location, and message displayed publicly on this website.
       </label>
@@ -95,16 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
   if (messageInput && charCount) {
     messageInput.addEventListener('input', function() {
       charCount.textContent = this.value.length;
-    });
-  }
-  
-  // Form submission feedback
-  const form = document.querySelector('.friend-form');
-  if (form) {
-    form.addEventListener('submit', function(e) {
-      const button = form.querySelector('.submit-button');
-      button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
-      button.disabled = true;
     });
   }
 });
@@ -264,6 +250,23 @@ document.addEventListener('DOMContentLoaded', function() {
   transform: none;
 }
 
+/* Form Note */
+.form-note {
+  width: 100%;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.form-note i {
+  color: #667eea;
+  margin-right: 0.3rem;
+}
+
 /* Dark Mode */
 .dark .friend-form-container {
   background: #1a1a2e;
@@ -299,6 +302,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 .dark .checkbox-label {
   color: #bbb;
+}
+
+.dark .form-note {
+  background: #0d0d1a;
+  color: #aaa;
 }
 
 /* Responsive */
