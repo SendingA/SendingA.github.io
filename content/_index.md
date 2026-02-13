@@ -259,13 +259,7 @@ sections:
       title: 🌍 Friends & Visitors
       subtitle: 'Connections from around the world'
       text: |-
-        {{< friends_map >}}
-        
-        <div style="text-align: center; margin-top: 2rem;">
-          <a href="/friends/" class="cta-button" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 8px; font-weight: 500;">
-            <i class="fas fa-user-plus"></i> Join the Map
-          </a>
-        </div>
+        {{< friends_preview >}}
     design:
       columns: '1'
       spacing:
