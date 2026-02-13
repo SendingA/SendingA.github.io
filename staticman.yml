@@ -1,0 +1,19 @@
+# Staticman Configuration
+# Staticman will handle form submissions and create PRs to your repo
+
+comments:
+  allowedFields: ["name", "affiliation", "city", "country", "website", "email", "message"]
+  branch: "main"
+  commitMessage: "New friend submission: {fields.name}"
+  filename: "{@timestamp}"
+  format: "yaml"
+  generatedFields:
+    date:
+      type: date
+      options:
+        format: "iso8601"
+  moderation: true
+  path: "data/friends_submissions"
+  requiredFields: ["name", "affiliation", "city", "country", "email"]
+  transforms:
+    email: md5
