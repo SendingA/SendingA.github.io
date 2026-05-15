@@ -4,5 +4,7 @@
 2025.12.1 I got 4.0 GPA in all of my three courses during my first semester in MSU
 2025.12.31 One paper was submitted to 2026 INFOCOM EIN Workshop with me the only first author！
 2026 1.22 I was invited to be one member of Tau Beta Pi
-
+2026.5.1 Achieved 4.0 GPA in Second Semester at MSU
+2026.5.6 Submitted a first-author survey paper to arxiv
+2026.5.7 Submitted a first-author paper to NDSS 2027
 
