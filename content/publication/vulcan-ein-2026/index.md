@@ -63,7 +63,7 @@ image:
 projects: []
 
 # Slides (optional).
-slides: url_slides
+slides: ""
 ---
 
 Our paper **VULCAN** has been accepted to the **IEEE INFOCOM 2026 Workshop on Embodied Intelligence Networks (EIN)**!
