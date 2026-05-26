@@ -48,7 +48,7 @@ url_code: ''
 url_dataset: ''
 url_poster: ''
 url_project: ''
-url_slides: ''
+url_slides: 'https://docs.google.com/presentation/d/17A6PYQ-7uQfbNhvVnbpzcNmYF5fFe6dT/edit?usp=sharing&ouid=106331997042165270040&rtpof=true&sd=true'
 url_source: ''
 url_video: ''
 
@@ -63,7 +63,7 @@ image:
 projects: []
 
 # Slides (optional).
-slides: ''
+slides: 'https://docs.google.com/presentation/d/17A6PYQ-7uQfbNhvVnbpzcNmYF5fFe6dT/edit?usp=sharing&ouid=106331997042165270040&rtpof=true&sd=true'
 ---
 
 Our paper **VULCAN** has been accepted to the **IEEE INFOCOM 2026 Workshop on Embodied Intelligence Networks (EIN)**!
