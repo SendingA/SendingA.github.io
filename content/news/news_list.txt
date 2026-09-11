@@ -7,4 +7,7 @@
 2026.5.1 Achieved 4.0 GPA in Second Semester at MSU
 2026.5.6 Submitted a first-author survey paper to arxiv
 2026.5.7 Submitted a first-author paper to NDSS 2027
+2026.9.2 Accepted to the Open Scholarship Fellowship 2026
+2026.9.2 Submitted a first-author paper to MobiCom
+2026.9.11 Joined the S&P 2027 Artifact Evaluation Program Committee (Cycle 1)
 
