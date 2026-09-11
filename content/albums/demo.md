@@ -6,7 +6,7 @@ type: landing
 sections:
   - block: markdown
     content:
-      title: 📸 Demo Gallery
+      title: Demo Gallery
       subtitle: Demo photos
       text: |
         {{< gallery album="demo" >}}

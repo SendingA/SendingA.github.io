@@ -6,7 +6,7 @@ type: landing
 sections:
   - block: markdown
     content:
-      title: 📸 Life Gallery
+      title: Life Gallery
       subtitle: Moments from my daily life
       text: |
         {{< gallery album="life" >}}

@@ -1,5 +1,5 @@
 ---
-title: 🎓 Graduated as SUSTech Outstanding Graduate
+title: Graduated as SUSTech Outstanding Graduate
 date: 2025-07-02
 summary: Proudly graduated from SUSTech with the University Outstanding Graduate honor.
 authors: [admin]

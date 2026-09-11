@@ -1,0 +1,23 @@
+{{ $block := .wcBlock }}
+{{ $personPage := site.GetPage (printf "/authors/%s" ($block.content.username | default "admin")) }}
+{{ $person := $personPage.Params }}
+<div class="profile-layout">
+  <aside id="profile">
+    {{ with ($personPage.Resources.ByType "image").GetMatch "*avatar*" }}
+      {{ $avatar := .Fill "420x480 Center" }}
+      <img class="avatar" src="{{ $avatar.RelPermalink }}" alt="{{ $personPage.Title }}" width="210" height="240" fetchpriority="high">
+    {{ end }}
+    <div class="portrait-title">
+      <h2>{{ $personPage.Title }}</h2>
+      {{ with $person.name_pronunciation }}<div class="profile-name-latin">{{ . }}</div>{{ end }}
+      {{ with $person.role }}<h3>{{ . | markdownify }}</h3>{{ end }}
+      {{ range $person.organizations }}
+        <h3 class="profile-organization"><a href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a></h3>
+      {{ end }}
+    </div>
+  </aside>
+  <div class="biography-content">
+    {{ with $block.content.title }}<h1>{{ . | markdownify }}</h1>{{ end }}
+    <div class="article-style">{{ $personPage.Content }}</div>
+  </div>
+</div>

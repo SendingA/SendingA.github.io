@@ -1,5 +1,5 @@
 ---
-title: 📄 Submitted First-Author Survey Paper to arXiv
+title: Submitted First-Author Survey Paper to arXiv
 date: 2026-05-06
 summary: Submitted a first-author survey paper to arXiv and hope it will be released soon.
 authors: [admin]

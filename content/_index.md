@@ -50,7 +50,7 @@ sections:
   - block: markdown
     id: news
     content:
-      title: 📰 Latest News & Updates
+      title: Latest News & Updates
       subtitle: 'Stay updated with my recent activities and milestones'
       text: |-
         {{< news_month_filter >}}
@@ -63,6 +63,7 @@ sections:
         padding: ['60px', '0', '60px', '0']       
 
   - block: experience
+    id: experience
     content:
       title: Experience
       subtitle: 'My academic and research journey'
@@ -191,8 +192,10 @@ sections:
   #     columns: '2'
   #     view: card
   - block: collection
+    id: featured
     content:
       title: Publications
+      subtitle: 'My research papers and academic contributions'
       # text: |-
       #   {{% callout note %}}
       #   Quickly discover relevant content by [filtering publications](./publication/).
@@ -232,18 +235,6 @@ sections:
         padding: ['60px', '0', '60px', '0']
   
   - block: markdown
-    id: skills
-    content:
-      title: Skill Set
-      subtitle: 'Technical skills and expertise'
-      text: |-
-        {{< skills_display >}}
-    design:
-      columns: '1'
-      spacing:
-        padding: ['60px', '0', '60px', '0']
-  
-  - block: markdown
     content:
       title: Gallery
       subtitle: 'Moments from my journey'
@@ -257,7 +248,7 @@ sections:
   # - block: markdown
   #   id: friends
   #   content:
-  #     title: 🌍 Friends & Visitors
+  #     title: Friends & Visitors
   #     subtitle: 'Connections from around the world'
   #     text: |-
   #       {{< friends_preview >}}

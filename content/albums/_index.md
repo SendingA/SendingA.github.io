@@ -5,7 +5,7 @@ type: landing
 sections:
   - block: markdown
     content:
-      title: 📸 Photo Albums
+      title: Photo Albums
       subtitle: Browse all my photo collections
       text: |
         Select an album to view:

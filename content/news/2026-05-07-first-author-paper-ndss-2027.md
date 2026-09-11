@@ -1,5 +1,5 @@
 ---
-title: 📝 Submitted First-Author Paper to NDSS 2027
+title: Submitted First-Author Paper to NDSS 2027
 date: 2026-05-07
 summary: Submitted a first-author paper to NDSS 2027 and hope everything goes well.
 authors: [admin]

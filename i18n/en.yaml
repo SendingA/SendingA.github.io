@@ -1,0 +1,78 @@
+profile_links:
+  other: Profile links
+view_project:
+  other: View Project
+more_projects:
+  other: More
+archive:
+  other: Archive
+archive_title:
+  other: View Full News Archive
+news_count:
+  other: '{{ .Count }} news items'
+previous_page:
+  other: Previous page
+next_page:
+  other: Next page
+previous_photos:
+  other: Previous photos
+next_photos:
+  other: Next photos
+view_photos:
+  other: View All Photos
+gallery_image:
+  other: Gallery image {{ . }}
+filter_date:
+  other: Filter by Date
+reset_filter:
+  other: Reset
+all_news:
+  other: All News
+select_date:
+  other: 'Select Date:'
+recent_updates:
+  other: Recent Updates
+no_news:
+  other: No news items found.
+read_more:
+  other: Read more
+friends_visitors:
+  other: Friends & Visitors
+countries:
+  other: Countries
+join_map:
+  other: Join the Map
+view_friends:
+  other: View All Friends
+friends_invitation:
+  other: Want to be featured here? Submit your information!
+join_friends_map:
+  other: Join the Friends Map
+friends_form_intro:
+  other: Fill out the form below to be featured on my friends map. Your submission
+    will be reviewed before being displayed.
+friend_name:
+  other: Your Name *
+friend_affiliation:
+  other: Affiliation *
+friend_city:
+  other: City *
+friend_country:
+  other: Country *
+friend_website:
+  other: Personal Website / Homepage
+friend_email:
+  other: Your Email Address *
+friend_verification:
+  other: For verification purposes only. Will not be displayed publicly.
+friend_message:
+  other: Leave a Message
+friend_message_placeholder:
+  other: Say hello or leave a nice message! (max 200 characters)
+friend_consent:
+  other: I agree to have my name, affiliation, location, and message displayed publicly
+    on this website.
+friend_submit:
+  other: Submit Application
+friend_affiliation_placeholder:
+  other: University / Company

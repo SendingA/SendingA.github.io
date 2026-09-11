@@ -1,0 +1,78 @@
+profile_links:
+  other: 个人链接
+view_project:
+  other: 查看项目
+more_projects:
+  other: 更多
+archive:
+  other: 归档
+archive_title:
+  other: 查看全部动态
+news_count:
+  other: 共 {{ .Count }} 条动态
+previous_page:
+  other: 上一页
+next_page:
+  other: 下一页
+previous_photos:
+  other: 上一组照片
+next_photos:
+  other: 下一组照片
+view_photos:
+  other: 查看全部照片
+gallery_image:
+  other: 相册照片 {{ . }}
+filter_date:
+  other: 按日期筛选
+reset_filter:
+  other: 重置
+all_news:
+  other: 全部动态
+select_date:
+  other: 选择日期：
+recent_updates:
+  other: 最新动态
+no_news:
+  other: 暂无相关动态。
+read_more:
+  other: 阅读全文
+friends_visitors:
+  other: 朋友与访客
+countries:
+  other: 国家
+join_map:
+  other: 加入地图
+view_friends:
+  other: 查看所有朋友
+friends_invitation:
+  other: 希望出现在这里？欢迎提交你的信息！
+join_friends_map:
+  other: 加入朋友地图
+friends_form_intro:
+  other: 填写以下表单，加入我的朋友地图。提交的信息经审核后展示。
+friend_name:
+  other: 你的姓名 *
+friend_affiliation:
+  other: 所属机构 *
+friend_city:
+  other: 城市 *
+friend_country:
+  other: 国家 *
+friend_website:
+  other: 个人网站 / 主页
+friend_email:
+  other: 你的电子邮箱 *
+friend_verification:
+  other: 仅用于验证，不会公开展示。
+friend_message:
+  other: 留言
+friend_message_placeholder:
+  other: 打个招呼或留下一段话吧！（最多 200 字）
+friend_consent:
+  other: 我同意在此网站公开展示我的姓名、所属机构、位置与留言。
+friend_submit:
+  other: 提交申请
+friend_affiliation_placeholder:
+  other: 大学 / 公司
+published_with:
+  other: 由 {hugoblox} 发布——免费、{repo_link}开源{/repo_link}的网站构建工具，助力创作者。

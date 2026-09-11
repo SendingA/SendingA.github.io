@@ -1,5 +1,5 @@
 ---
-title: 📡 Paper Submitted to IEEE S&P 2026
+title: Paper Submitted to IEEE S&P 2026
 date: 2025-11-18
 summary: Our research work Ghost Radar has been submitted to IEEE S&P 2026.
 authors: [admin]

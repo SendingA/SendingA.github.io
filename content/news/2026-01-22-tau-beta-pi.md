@@ -1,5 +1,5 @@
 ---
-title: 🎖️ Invited to Join Tau Beta Pi Honor Society
+title: Invited to Join Tau Beta Pi Honor Society
 date: 2026-01-22
 summary: Honored to be invited as a member of Tau Beta Pi, the oldest engineering honor society.
 authors: [admin]

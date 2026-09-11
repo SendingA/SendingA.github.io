@@ -1,5 +1,5 @@
 ---
-title: "🎉 Paper Accepted to INFOCOM 2026 EIN Workshop"
+title: "Paper Accepted to INFOCOM 2026 EIN Workshop"
 date: 2026-02-12
 summary: Our paper VULCAN has been accepted to IEEE INFOCOM 2026 EIN Workshop.
 authors: [admin]

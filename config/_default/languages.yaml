@@ -1,22 +1,48 @@
-# Languages
-#   Create a section for each of your site's languages.
-#   Documentation: https://docs.hugoblox.com/reference/language/
-
-# Default language
+# English stays at /; translated *.zh.md pages live under /zh/.
 en:
   languageCode: en-us
-  # Uncomment for multi-lingual sites, and move English content into `en` sub-folder.
-  #contentDir: content/en
-
-# Uncomment the lines below to configure your website in a second language.
-#zh:
-#  languageCode: zh-Hans
-#  contentDir: content/zh
-#  title: Chinese website title...
-#  params:
-#    description: Site description in Chinese...
-#  menu:
-#    main:
-#      - name: 传
-#        url: '#about'
-#        weight: 1
+  languageName: English
+  weight: 1
+zh:
+  languageCode: zh-Hans
+  languageName: 简体中文
+  weight: 2
+  title: 刘圣鼎
+  params:
+    marketing:
+      seo:
+        description: 由 Hugo Blox Builder 驱动、支持高度定制的 Hugo 学术简历主题。
+    locale:
+      date_format: 2006年1月2日
+      time_format: '15:04'
+      address_format: en-us
+    footer:
+      copyright:
+        notice: © {year} Me. 本作品采用 {license} 许可协议
+  menu:
+    main:
+    - name: 首页
+      url: '#about'
+      weight: 10
+    - name: 个人档案
+      url: profile/
+      weight: 15
+    # 内容仍为模板示例，完成后取消注释即可恢复入口。
+    # - name: 文章
+    #   url: post/
+    #   weight: 20
+    - name: 项目
+      url: '#projects'
+      weight: 30
+    # - name: 演讲
+    #   url: event/
+    #   weight: 40
+    - name: 论文
+      url: '#featured'
+      weight: 50
+    # - name: 朋友
+    #   url: friends/
+    #   weight: 55
+    - name: 联系
+      url: '#contact'
+      weight: 60

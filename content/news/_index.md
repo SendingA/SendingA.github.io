@@ -1,5 +1,5 @@
 ---
-title: 📰 News & Updates
+title: News & Updates
 layout: news
 summary: Stay updated with my latest activities, achievements, and milestones. Use the calendar to explore news from specific months.
 view: 3

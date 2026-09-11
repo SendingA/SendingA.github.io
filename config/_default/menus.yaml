@@ -7,21 +7,27 @@ main:
   - name: Home
     url: '#about'
     weight: 10
-  - name: Posts
-    url: '#posts'
-    weight: 20
+  - name: Profile
+    url: 'profile/'
+    weight: 15
+  # Hidden while this section contains only starter posts.
+  # - name: Posts
+  #   url: 'post/'
+  #   weight: 20
   - name: Projects
     url: '#projects'
     weight: 30
-  - name: Talks
-    url: '#talks'
-    weight: 40
+  # Hidden until the example talk is replaced with real content.
+  # - name: Talks
+  #   url: 'event/'
+  #   weight: 40
   - name: Publications
     url: '#featured'
     weight: 50
-  - name: Friends
-    url: '#friends'
-    weight: 55
+  # Hidden while the friends list contains demo entries.
+  # - name: Friends
+  #   url: 'friends/'
+  #   weight: 55
   - name: Contact
     url: '#contact'
     weight: 60

@@ -1,0 +1,12 @@
+<div class="news-list-item" data-date="{{ .Date.Format "2006-01-02" }}">
+  <time class="news-item-date" datetime="{{ .Date.Format "2006-01-02" }}">
+    <span class="date-day">{{ .Date.Format "02" }}</span>
+    <span class="date-month">{{ .Date | time.Format "Jan" }}</span>
+    <span class="date-year">{{ .Date.Format "2006" }}</span>
+  </time>
+  <div class="news-item-content">
+    <h3 class="news-item-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    {{ with .Params.summary }}<p class="news-item-summary">{{ . }}</p>{{ end }}
+    {{ with .Params.tags }}<div class="news-item-tags">{{ range . }}<span class="news-tag">{{ . }}</span>{{ end }}</div>{{ end }}
+  </div>
+</div>

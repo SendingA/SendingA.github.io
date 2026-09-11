@@ -1,5 +1,5 @@
 ---
-title: 📝 Paper Submitted to INFOCOM 2026 EIN Workshop
+title: Paper Submitted to INFOCOM 2026 EIN Workshop
 date: 2025-12-31
 summary: Submitted a first-author paper to IEEE INFOCOM 2026 EIN Workshop.
 authors: [admin]

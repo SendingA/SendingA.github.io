@@ -1,5 +1,5 @@
 ---
-title: 📝 Submitted First-Author Paper to MobiCom
+title: Submitted First-Author Paper to MobiCom
 date: 2026-09-02
 summary: Submitted a first-author paper to MobiCom.
 authors: [admin]

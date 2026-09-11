@@ -1,5 +1,5 @@
 ---
-title: "🎉 Paper Accepted by IEEE TDSC (CCF-A)"
+title: "Paper Accepted by IEEE TDSC (CCF-A)"
 date: 2025-10-06
 summary: Our research work AttackDeceiver has been accepted by IEEE TDSC(CCF-A).
 authors: [admin]

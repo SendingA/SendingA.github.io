@@ -1,5 +1,5 @@
 ---
-title: 🎓 Achieved 4.0 GPA in Second Semester at MSU
+title: Achieved 4.0 GPA in Second Semester at MSU
 date: 2026-05-01
 summary: Successfully completed my second semester at MSU with a perfect 4.0 GPA.
 authors: [admin]

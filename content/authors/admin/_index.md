@@ -52,7 +52,7 @@ education:
 # Skills
 # For available icons, see: https://docs.hugoblox.com/getting-started/page-builder/#icons
 skills:
-  - name: Programming Languages & Frameworks
+  - name: Languages & Tools
     items:
       - name: Java
         icon: java

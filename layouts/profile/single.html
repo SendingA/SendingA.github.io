@@ -1,0 +1,59 @@
+{{ define "main" }}
+{{ $personPage := site.GetPage (printf "/authors/%s" (.Params.username | default "admin")) }}
+{{ $person := $personPage.Params }}
+<div class="container profile-page">
+  <header class="profile-page-header"><h1>{{ .Title }}</h1></header>
+  <div class="profile-overview">
+    <nav class="profile-social" aria-labelledby="profile-links-heading">
+      <h2 id="profile-links-heading">{{ i18n "profile_links" }}</h2>
+      <ul class="network-icon">
+        {{ range $person.social }}
+          {{ $pack := .icon_pack | default "fas" }}
+          {{ $prefix := cond (in (slice "fab" "fas" "far" "fal") $pack) "fa" $pack }}
+          {{ $link := .link }}
+          {{ if and (eq .icon "blog") (in $link "#posts") }}{{ $link = "post/" | relLangURL }}{{ end }}
+          {{ $scheme := (urls.Parse $link).Scheme }}
+          {{ if not $scheme }}{{ $link = $link | relURL }}{{ end }}
+          {{ $labels := dict "github" "GitHub" "envelope" (i18n "contact_email") "blog" (i18n "posts") "zhihu" "知乎" "linkedin" "LinkedIn" "cv" "CV" }}
+          {{ $label := index $labels .icon | default .icon }}
+          <li>
+            <a href="{{ $link | safeURL }}" {{ if in (slice "http" "https") $scheme }}target="_blank" rel="noopener"{{ end }}>
+              <span class="profile-link-icon" aria-hidden="true">
+                {{ if eq .icon "zhihu" }}<span class="profile-link-monogram">知</span>
+                {{ else if eq .icon "envelope" }}{{ partial "profile-icon.html" "mail" }}
+                {{ else if eq .icon "blog" }}{{ partial "profile-icon.html" "posts" }}
+                {{ else if eq .icon "cv" }}{{ partial "profile-icon.html" "cv" }}
+                {{ else }}<i class="{{ $pack }} {{ $prefix }}-{{ .icon }}" aria-hidden="true"></i>{{ end }}
+              </span>
+              <span class="profile-link-label">{{ $label }}</span>
+            </a>
+          </li>
+        {{ end }}
+      </ul>
+    </nav>
+    <div class="profile-details">
+      {{ with $person.interests }}
+        <section class="profile-interests-section" aria-labelledby="profile-interests-heading">
+          <h2 id="profile-interests-heading">{{ i18n "interests" }}</h2>
+          <ul class="profile-interests">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+        </section>
+      {{ end }}
+      {{ with $person.education }}
+        <section class="profile-education-section" aria-labelledby="profile-education-heading">
+          <h2 id="profile-education-heading">{{ i18n "education" }}</h2>
+          <ul class="profile-education">
+            {{ range .courses }}<li><p class="course">{{ .course }}</p><p class="institution">{{ .institution }}</p><p class="education-year">{{ .year }}</p></li>{{ end }}
+          </ul>
+        </section>
+      {{ end }}
+    </div>
+  </div>
+  <section class="profile-skills" id="skills" aria-labelledby="profile-skills-heading">
+    <header>
+      <h2 id="profile-skills-heading">{{ .Params.skills_title }}</h2>
+      <p class="page-subtitle">{{ .Params.skills_subtitle }}</p>
+    </header>
+    {{ .Content }}
+  </section>
+</div>
+{{ end }}

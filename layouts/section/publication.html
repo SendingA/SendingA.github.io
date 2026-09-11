@@ -52,8 +52,8 @@
       <div id="container-publications">
         {{ range $index, $item := .Pages.ByDate.Reverse }}
 
-        {{/* Only render pages that have publication_types and include article-journal */}}
-        {{ if and $item.Params.publication_types (in $item.Params.publication_types "article-journal") }}
+        {{/* Render all existing publication types. */}}
+        {{ if $item.Params.publication_types }}
 
           {{ if .Params.publication_types }}
             {{ $.Scratch.Set "pubtype" (index .Params.publication_types 0) }}

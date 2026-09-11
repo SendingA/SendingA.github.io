@@ -7,7 +7,7 @@ date: 2026-02-13
 sections:
   - block: markdown
     content:
-      title: 🌍 Friends & Visitors Map
+      title: Friends & Visitors Map
       subtitle: 'Connections from around the world'
       text: |-
         Welcome to my friends and visitors page! Here you can see all the wonderful people who have connected with me from different parts of the world. 

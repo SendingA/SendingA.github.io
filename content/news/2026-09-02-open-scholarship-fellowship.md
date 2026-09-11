@@ -1,5 +1,5 @@
 ---
-title: 🎉 Accepted to the Open Scholarship Fellowship 2026
+title: Accepted to the Open Scholarship Fellowship 2026
 date: 2026-09-02
 summary: Excited to be accepted to the Open Scholarship Fellowship 2026!
 authors: [admin]

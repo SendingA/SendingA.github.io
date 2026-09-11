@@ -1,5 +1,5 @@
 ---
-title: 🏅 Received Honorary Certificate of Turing Class
+title: Received Honorary Certificate of Turing Class
 date: 2025-07-01
 summary: Honored to receive the prestigious Honorary Certificate of Turing Class at SUSTech.
 authors: [admin]

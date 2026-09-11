@@ -1,5 +1,6 @@
 ---
 title: Publications
+subtitle: My research papers and academic contributions
 cms_exclude: true
 
 # View.
