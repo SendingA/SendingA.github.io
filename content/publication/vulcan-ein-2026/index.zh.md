@@ -21,7 +21,7 @@ tags:
 - 协同导航
 - 灾害响应
 featured: true
-url_pdf: https://arxiv.org/pdf/2604.12831
+url_pdf: https://doi.org/10.1109/INFOCOM59046.2026.11680073
 url_code: ''
 url_dataset: ''
 url_poster: ''
