@@ -7,7 +7,7 @@ author_notes:
 - 第一作者
 - ''
 date: '2026-02-11T00:00:00Z'
-doi: ''
+doi: '10.1109/INFOCOM59046.2026.11680073'
 publishDate: '2026-02-11T00:00:00Z'
 publication_types:
 - paper-conference
