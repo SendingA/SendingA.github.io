@@ -7,6 +7,7 @@
   <div class="news-item-content">
     <h3 class="news-item-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
     {{ with .Params.summary }}<p class="news-item-summary">{{ . }}</p>{{ end }}
+    {{ with .Params.comment }}<p class="news-item-summary">{{ . }}</p>{{ end }}
     {{ with .Params.tags }}<div class="news-item-tags">{{ range . }}<span class="news-tag">{{ . }}</span>{{ end }}</div>{{ end }}
   </div>
 </div>
